@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+.vs
+src/LeopardGraphics/Debug
+src/LeopardGraphics/x64/Debug
+src/JaguarCore/Debug
+src/JaguarCore/x64/Debug
+src/TigerEngine/Debug
+src/TigerEngine/x64/Debug
+x64/Debug
