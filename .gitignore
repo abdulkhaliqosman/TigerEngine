@@ -32,10 +32,20 @@
 *.app
 
 .vs
-src/LeopardGraphics/Debug
-src/LeopardGraphics/x64/Debug
 src/JaguarCore/Debug
 src/JaguarCore/x64/Debug
+src/JaguarCore/x64/Release
+src/LeopardGraphics/Debug
+src/LeopardGraphics/x64/Debug
+src/LeopardGraphics/x64/Release
+src/LionAnimation/Debug
+src/LionAnimation/x64/Debug
+src/LionAnimation/x64/Release
 src/TigerEngine/Debug
 src/TigerEngine/x64/Debug
+src/TigerEngine/x64/Release
+submodules/Extern/Debug
+submodules/Extern/x64/Debug
+submodules/Extern/x64/Release
 x64/Debug
+x64/Release

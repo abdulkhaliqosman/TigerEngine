@@ -17,6 +17,6 @@ int main(int argc, const char** argv)
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, int iCmdShow)
 {
 	tgr::WinApp winApp;
-	winApp.Init(hInstance, hPrevInstance, szCmdLine, iCmdShow);
+	winApp.Startup(hInstance, hPrevInstance, szCmdLine, iCmdShow);
 	winApp.Run();
 }

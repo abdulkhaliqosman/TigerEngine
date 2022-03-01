@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -86,16 +86,17 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;LEOPARDGRAPHICS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;LEOPARDGRAPHICS_EXPORTS;_WINDOWS;_USRDLL;GLAD_GLAPI_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>leopardgraphics/leopardpch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)submodules\extern;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)LionAnimation.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -104,11 +105,11 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;LEOPARDGRAPHICS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;LEOPARDGRAPHICS_EXPORTS;_WINDOWS;_USRDLL;GLAD_GLAPI_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>leopardgraphics/leopardpch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)submodules\extern;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -116,22 +117,24 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)Extern.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;LEOPARDGRAPHICS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;LEOPARDGRAPHICS_EXPORTS;_WINDOWS;_USRDLL;GLAD_GLAPI_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>leopardgraphics/leopardpch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)submodules\extern;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)LionAnimation.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -140,11 +143,11 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;LEOPARDGRAPHICS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;LEOPARDGRAPHICS_EXPORTS;_WINDOWS;_USRDLL;GLAD_GLAPI_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>leopardgraphics/leopardpch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)submodules\extern;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -152,17 +155,43 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)Extern.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="leopardgraphics\component\graphicscomponent.h" />
+    <ClInclude Include="leopardgraphics\display\idisplay.h" />
+    <ClInclude Include="leopardgraphics\graphics\glgraphics\attribute.h" />
+    <ClInclude Include="leopardgraphics\component\cameracomponent.h" />
+    <ClInclude Include="leopardgraphics\graphics\glgraphics\draw.h" />
+    <ClInclude Include="leopardgraphics\graphics\glgraphics\elementbuffer.h" />
+    <ClInclude Include="leopardgraphics\graphics\glgraphics\glgraphicssystem.h" />
     <ClInclude Include="leopardgraphics\graphics\glgraphics\glgraphics.h" />
-    <ClInclude Include="leopardgraphics\graphics\igraphics.h" />
+    <ClInclude Include="leopardgraphics\graphics\glgraphics\shader.h" />
+    <ClInclude Include="leopardgraphics\graphics\glgraphics\texture.h" />
+    <ClInclude Include="leopardgraphics\graphics\glgraphics\uniform.h" />
+    <ClInclude Include="leopardgraphics\graphics\glgraphics\vertexarray.h" />
+    <ClInclude Include="leopardgraphics\graphics\igraphicssystem.h" />
     <ClInclude Include="leopardgraphics\graphics\mockgraphics\mockgraphics.h" />
     <ClInclude Include="leopardgraphics\leopardpch.h" />
+    <ClInclude Include="leopardgraphics\loader\gltfmeshloader.h" />
+    <ClInclude Include="leopardgraphics\shapes\cube.h" />
+    <ClInclude Include="leopardgraphics\shapes\mesh.h" />
+    <ClInclude Include="leopardgraphics\shapes\shape.h" />
+    <ClInclude Include="leopardgraphics\shapes\staticshape.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="leopardgraphics\component\graphicscomponent.cpp" />
     <ClCompile Include="leopardgraphics\dllmain.cpp" />
-    <ClCompile Include="leopardgraphics\graphics\glgraphics\glgraphics.cpp" />
+    <ClCompile Include="leopardgraphics\graphics\glgraphics\attribute.cpp" />
+    <ClCompile Include="leopardgraphics\component\cameracomponent.cpp" />
+    <ClCompile Include="leopardgraphics\graphics\glgraphics\draw.cpp" />
+    <ClCompile Include="leopardgraphics\graphics\glgraphics\elementbuffer.cpp" />
+    <ClCompile Include="leopardgraphics\graphics\glgraphics\glgraphicssystem.cpp" />
+    <ClCompile Include="leopardgraphics\graphics\glgraphics\shader.cpp" />
+    <ClCompile Include="leopardgraphics\graphics\glgraphics\texture.cpp" />
+    <ClCompile Include="leopardgraphics\graphics\glgraphics\uniform.cpp" />
+    <ClCompile Include="leopardgraphics\graphics\glgraphics\vertexarray.cpp" />
     <ClCompile Include="leopardgraphics\graphics\mockgraphics\mockgraphics.cpp" />
     <ClCompile Include="leopardgraphics\leopardpch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -170,6 +199,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="leopardgraphics\loader\gltfmeshloader.cpp" />
+    <ClCompile Include="leopardgraphics\shapes\cube.cpp" />
+    <ClCompile Include="leopardgraphics\shapes\mesh.cpp" />
+    <ClCompile Include="leopardgraphics\shapes\shape.cpp" />
+    <ClCompile Include="leopardgraphics\shapes\staticshape.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

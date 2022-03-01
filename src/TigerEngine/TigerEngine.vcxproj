@@ -90,12 +90,12 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>tigerengine/tigerpch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)submodules\imgui;$(SolutionDir)submodules\extern;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)LeopardGraphics.lib;$(OutDir)ImGui.lib;$(OutDir)Extern.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -108,14 +108,14 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>tigerengine/tigerpch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)submodules\imgui;$(SolutionDir)submodules\extern;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)LeopardGraphics.lib;$(OutDir)ImGui.lib;$(OutDir)Extern.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -126,12 +126,13 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>tigerengine/tigerpch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine\extern;$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)submodules\imgui;$(SolutionDir)submodules\extern;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)LeopardGraphics.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)LeopardGraphics.lib;$(OutDir)ImGui.lib;$(OutDir)Extern.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ShowProgress>LinkVerbose</ShowProgress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -144,34 +145,28 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>tigerengine/tigerpch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)submodules\imgui;$(SolutionDir)submodules\extern;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)LeopardGraphics.lib;$(OutDir)ImGui.lib;$(OutDir)Extern.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="extern\cgltf\cgltf.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </PrecompiledHeaderFile>
-    </ClCompile>
-    <ClCompile Include="extern\glad\glad.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </PrecompiledHeaderFile>
-    </ClCompile>
-    <ClCompile Include="extern\stb\stb_image.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="tigerengine\app\windows\winapp.cpp" />
     <ClCompile Include="tigerengine\app\windows\winglcontext.cpp" />
+    <ClCompile Include="tigerengine\componentfactory\componentfactory.cpp" />
     <ClCompile Include="tigerengine\engine\engine.cpp" />
+    <ClCompile Include="tigerengine\gameobjectfactory\gameobjectfactory.cpp" />
+    <ClCompile Include="tigerengine\imgui\imguiwrapper.cpp" />
+    <ClCompile Include="tigerengine\imgui\windows\winimguiwrapper.cpp" />
+    <ClCompile Include="tigerengine\input\input.cpp" />
+    <ClCompile Include="tigerengine\input\windows\wininput.cpp" />
     <ClCompile Include="tigerengine\main.cpp" />
+    <ClCompile Include="tigerengine\scene\scene.cpp" />
     <ClCompile Include="tigerengine\tigerpch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -180,14 +175,15 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="extern\cgltf\cgltf.h" />
-    <ClInclude Include="extern\glad\glad.h" />
-    <ClInclude Include="extern\GL\wgl.h" />
-    <ClInclude Include="extern\GL\wglext.h" />
-    <ClInclude Include="extern\KHR\khrplatform.h" />
-    <ClInclude Include="extern\stb\stb_image.h" />
     <ClInclude Include="tigerengine\app\windows\winglcontext.h" />
+    <ClInclude Include="tigerengine\componentfactory\componentfactory.h" />
     <ClInclude Include="tigerengine\engine\engine.h" />
+    <ClInclude Include="tigerengine\gameobjectfactory\gameobjectfactory.h" />
+    <ClInclude Include="tigerengine\imgui\imguiwrapper.h" />
+    <ClInclude Include="tigerengine\imgui\windows\winimguiwrapper.h" />
+    <ClInclude Include="tigerengine\input\input.h" />
+    <ClInclude Include="tigerengine\input\windows\wininput.h" />
+    <ClInclude Include="tigerengine\scene\scene.h" />
     <ClInclude Include="tigerengine\tigerpch.h" />
     <ClInclude Include="tigerengine\app\windows\winapp.h" />
   </ItemGroup>

@@ -18,13 +18,61 @@
     <ClInclude Include="leopardgraphics\leopardpch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="leopardgraphics\graphics\glgraphics\glgraphics.h">
+    <ClInclude Include="leopardgraphics\graphics\glgraphics\glgraphicssystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="leopardgraphics\graphics\igraphics.h">
+    <ClInclude Include="leopardgraphics\graphics\igraphicssystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="leopardgraphics\graphics\mockgraphics\mockgraphics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="leopardgraphics\graphics\glgraphics\attribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="leopardgraphics\graphics\glgraphics\draw.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="leopardgraphics\graphics\glgraphics\elementbuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="leopardgraphics\graphics\glgraphics\glgraphics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="leopardgraphics\graphics\glgraphics\shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="leopardgraphics\graphics\glgraphics\texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="leopardgraphics\graphics\glgraphics\uniform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="leopardgraphics\graphics\glgraphics\vertexarray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="leopardgraphics\loader\gltfmeshloader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="leopardgraphics\shapes\cube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="leopardgraphics\shapes\shape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="leopardgraphics\shapes\mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="leopardgraphics\display\idisplay.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="leopardgraphics\component\cameracomponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="leopardgraphics\component\graphicscomponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="leopardgraphics\shapes\staticshape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -35,10 +83,52 @@
     <ClCompile Include="leopardgraphics\leopardpch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="leopardgraphics\graphics\glgraphics\glgraphics.cpp">
+    <ClCompile Include="leopardgraphics\graphics\glgraphics\glgraphicssystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="leopardgraphics\graphics\mockgraphics\mockgraphics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="leopardgraphics\graphics\glgraphics\attribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="leopardgraphics\graphics\glgraphics\draw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="leopardgraphics\graphics\glgraphics\elementbuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="leopardgraphics\graphics\glgraphics\shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="leopardgraphics\graphics\glgraphics\texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="leopardgraphics\graphics\glgraphics\uniform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="leopardgraphics\graphics\glgraphics\vertexarray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="leopardgraphics\loader\gltfmeshloader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="leopardgraphics\shapes\cube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="leopardgraphics\shapes\shape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="leopardgraphics\shapes\mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="leopardgraphics\component\cameracomponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="leopardgraphics\component\graphicscomponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="leopardgraphics\shapes\staticshape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

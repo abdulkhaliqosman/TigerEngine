@@ -54,10 +54,37 @@
     <ClInclude Include="jaguarcore\input\iinput.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="jaguarcore\input\windows\wininput.h">
+    <ClInclude Include="jaguarcore\log\log.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="jaguarcore\log\log.h">
+    <ClInclude Include="jaguarcore\thread\threadpool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jaguarcore\math\interpolation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jaguarcore\math\math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jaguarcore\math\quaternion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jaguarcore\math\transform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jaguarcore\components\transformcomponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jaguarcore\scene\iscene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jaguarcore\math\conversions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jaguarcore\jaguarexport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jaguarcore\filetypes\gltf\gltfloader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -71,16 +98,22 @@
     <ClCompile Include="jaguarcore\jaguarpch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="jaguarcore\math\matrix.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="jaguarcore\math\vector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="jaguarcore\input\wininput.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="jaguarcore\log\log.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="jaguarcore\thread\threadpool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="jaguarcore\components\transformcomponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="jaguarcore\components\component.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="jaguarcore\gameobject\gameobject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="jaguarcore\filetypes\gltf\gltfloader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -6,12 +6,30 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TigerEngine", "src\TigerEngine\TigerEngine.vcxproj", "{A823FDDF-53F4-4CD6-BD70-DC25E9E263F8}"
 	ProjectSection(ProjectDependencies) = postProject
 		{4BAAAE49-88CB-473C-8EA9-18703DC2CEB8} = {4BAAAE49-88CB-473C-8EA9-18703DC2CEB8}
+		{859F8A4E-C3AF-4B6D-B5D8-BF38FE561F3F} = {859F8A4E-C3AF-4B6D-B5D8-BF38FE561F3F}
 		{1DCB99BD-57A7-4962-9ECB-85BA9C8B7F83} = {1DCB99BD-57A7-4962-9ECB-85BA9C8B7F83}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LeopardGraphics", "src\LeopardGraphics\LeopardGraphics.vcxproj", "{1DCB99BD-57A7-4962-9ECB-85BA9C8B7F83}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CDD54214-C2DB-4BC4-905D-20F11A40CDAB} = {CDD54214-C2DB-4BC4-905D-20F11A40CDAB}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JaguarCore", "src\JaguarCore\JaguarCore.vcxproj", "{4BAAAE49-88CB-473C-8EA9-18703DC2CEB8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{16CA2EB5-1AE0-445E-BB9F-92E280AEE62C} = {16CA2EB5-1AE0-445E-BB9F-92E280AEE62C}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LionAnimation", "src\LionAnimation\LionAnimation.vcxproj", "{CDD54214-C2DB-4BC4-905D-20F11A40CDAB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4BAAAE49-88CB-473C-8EA9-18703DC2CEB8} = {4BAAAE49-88CB-473C-8EA9-18703DC2CEB8}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "submodules", "submodules", "{66CD9239-5E5E-4941-BC10-F4018EB3E7F7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImGui", "submodules\ImGui\ImGui.vcxproj", "{859F8A4E-C3AF-4B6D-B5D8-BF38FE561F3F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Extern", "submodules\Extern\Extern.vcxproj", "{16CA2EB5-1AE0-445E-BB9F-92E280AEE62C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,9 +63,37 @@ Global
 		{4BAAAE49-88CB-473C-8EA9-18703DC2CEB8}.Release|x64.Build.0 = Release|x64
 		{4BAAAE49-88CB-473C-8EA9-18703DC2CEB8}.Release|x86.ActiveCfg = Release|Win32
 		{4BAAAE49-88CB-473C-8EA9-18703DC2CEB8}.Release|x86.Build.0 = Release|Win32
+		{CDD54214-C2DB-4BC4-905D-20F11A40CDAB}.Debug|x64.ActiveCfg = Debug|x64
+		{CDD54214-C2DB-4BC4-905D-20F11A40CDAB}.Debug|x64.Build.0 = Debug|x64
+		{CDD54214-C2DB-4BC4-905D-20F11A40CDAB}.Debug|x86.ActiveCfg = Debug|Win32
+		{CDD54214-C2DB-4BC4-905D-20F11A40CDAB}.Debug|x86.Build.0 = Debug|Win32
+		{CDD54214-C2DB-4BC4-905D-20F11A40CDAB}.Release|x64.ActiveCfg = Release|x64
+		{CDD54214-C2DB-4BC4-905D-20F11A40CDAB}.Release|x64.Build.0 = Release|x64
+		{CDD54214-C2DB-4BC4-905D-20F11A40CDAB}.Release|x86.ActiveCfg = Release|Win32
+		{CDD54214-C2DB-4BC4-905D-20F11A40CDAB}.Release|x86.Build.0 = Release|Win32
+		{859F8A4E-C3AF-4B6D-B5D8-BF38FE561F3F}.Debug|x64.ActiveCfg = Debug|x64
+		{859F8A4E-C3AF-4B6D-B5D8-BF38FE561F3F}.Debug|x64.Build.0 = Debug|x64
+		{859F8A4E-C3AF-4B6D-B5D8-BF38FE561F3F}.Debug|x86.ActiveCfg = Debug|Win32
+		{859F8A4E-C3AF-4B6D-B5D8-BF38FE561F3F}.Debug|x86.Build.0 = Debug|Win32
+		{859F8A4E-C3AF-4B6D-B5D8-BF38FE561F3F}.Release|x64.ActiveCfg = Release|x64
+		{859F8A4E-C3AF-4B6D-B5D8-BF38FE561F3F}.Release|x64.Build.0 = Release|x64
+		{859F8A4E-C3AF-4B6D-B5D8-BF38FE561F3F}.Release|x86.ActiveCfg = Release|Win32
+		{859F8A4E-C3AF-4B6D-B5D8-BF38FE561F3F}.Release|x86.Build.0 = Release|Win32
+		{16CA2EB5-1AE0-445E-BB9F-92E280AEE62C}.Debug|x64.ActiveCfg = Debug|x64
+		{16CA2EB5-1AE0-445E-BB9F-92E280AEE62C}.Debug|x64.Build.0 = Debug|x64
+		{16CA2EB5-1AE0-445E-BB9F-92E280AEE62C}.Debug|x86.ActiveCfg = Debug|Win32
+		{16CA2EB5-1AE0-445E-BB9F-92E280AEE62C}.Debug|x86.Build.0 = Debug|Win32
+		{16CA2EB5-1AE0-445E-BB9F-92E280AEE62C}.Release|x64.ActiveCfg = Release|x64
+		{16CA2EB5-1AE0-445E-BB9F-92E280AEE62C}.Release|x64.Build.0 = Release|x64
+		{16CA2EB5-1AE0-445E-BB9F-92E280AEE62C}.Release|x86.ActiveCfg = Release|Win32
+		{16CA2EB5-1AE0-445E-BB9F-92E280AEE62C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{859F8A4E-C3AF-4B6D-B5D8-BF38FE561F3F} = {66CD9239-5E5E-4941-BC10-F4018EB3E7F7}
+		{16CA2EB5-1AE0-445E-BB9F-92E280AEE62C} = {66CD9239-5E5E-4941-BC10-F4018EB3E7F7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2EBA7EC6-65F9-4D92-9642-59CEC51017B0}

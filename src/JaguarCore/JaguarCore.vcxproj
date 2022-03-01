@@ -90,12 +90,13 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>jaguarcore/jaguarpch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\JaguarCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\JaguarCore;$(SolutionDir)submodules\extern;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>$(OutDir)Extern.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -108,7 +109,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>jaguarcore/jaguarpch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\JaguarCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\JaguarCore;$(SolutionDir)submodules\extern;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -116,6 +117,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>$(OutDir)Extern.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -126,12 +128,13 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>jaguarcore/jaguarpch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\JaguarCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\JaguarCore;$(SolutionDir)submodules\extern;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>$(OutDir)Extern.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -144,7 +147,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>jaguarcore/jaguarpch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\JaguarCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\JaguarCore;$(SolutionDir)submodules\extern;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -152,28 +155,41 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>$(OutDir)Extern.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="jaguarcore\app\iapp.h" />
     <ClInclude Include="jaguarcore\components\component.h" />
+    <ClInclude Include="jaguarcore\components\transformcomponent.h" />
+    <ClInclude Include="jaguarcore\filetypes\gltf\gltfloader.h" />
     <ClInclude Include="jaguarcore\gameobject\gameobject.h" />
     <ClInclude Include="jaguarcore\input\iinput.h" />
-    <ClInclude Include="jaguarcore\input\windows\wininput.h" />
+    <ClInclude Include="jaguarcore\jaguarexport.h" />
     <ClInclude Include="jaguarcore\jaguarpch.h" />
     <ClInclude Include="jaguarcore\log\log.h" />
+    <ClInclude Include="jaguarcore\math\conversions.h" />
+    <ClInclude Include="jaguarcore\math\interpolation.h" />
+    <ClInclude Include="jaguarcore\math\math.h" />
     <ClInclude Include="jaguarcore\math\matrix.h" />
+    <ClInclude Include="jaguarcore\math\quaternion.h" />
+    <ClInclude Include="jaguarcore\math\transform.h" />
     <ClInclude Include="jaguarcore\math\vector.h" />
     <ClInclude Include="jaguarcore\memory\memory.h" />
+    <ClInclude Include="jaguarcore\scene\iscene.h" />
     <ClInclude Include="jaguarcore\system\isystem.h" />
     <ClInclude Include="jaguarcore\thread\thread.h" />
+    <ClInclude Include="jaguarcore\thread\threadpool.h" />
     <ClInclude Include="jaguarcore\thread\windows\winthread.h" />
     <ClInclude Include="jaguarcore\transform\transform.h" />
     <ClInclude Include="jaguarcore\transform\transformcomponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="jaguarcore\components\component.cpp" />
+    <ClCompile Include="jaguarcore\components\transformcomponent.cpp" />
     <ClCompile Include="jaguarcore\dllmain.cpp" />
-    <ClCompile Include="jaguarcore\input\wininput.cpp" />
+    <ClCompile Include="jaguarcore\filetypes\gltf\gltfloader.cpp" />
+    <ClCompile Include="jaguarcore\gameobject\gameobject.cpp" />
     <ClCompile Include="jaguarcore\jaguarpch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -181,8 +197,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="jaguarcore\log\log.cpp" />
-    <ClCompile Include="jaguarcore\math\matrix.cpp" />
-    <ClCompile Include="jaguarcore\math\vector.cpp" />
+    <ClCompile Include="jaguarcore\thread\threadpool.cpp" />
     <ClCompile Include="jaguarcore\thread\windows\winthread.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

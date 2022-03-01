@@ -30,13 +30,25 @@
     <ClCompile Include="tigerengine\app\windows\winglcontext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="extern\glad\glad.c">
+    <ClCompile Include="tigerengine\scene\scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="extern\stb\stb_image.cpp">
+    <ClCompile Include="tigerengine\input\input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="extern\cgltf\cgltf.c">
+    <ClCompile Include="tigerengine\componentfactory\componentfactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tigerengine\gameobjectfactory\gameobjectfactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tigerengine\input\windows\wininput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tigerengine\imgui\imguiwrapper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tigerengine\imgui\windows\winimguiwrapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,22 +65,25 @@
     <ClInclude Include="tigerengine\app\windows\winglcontext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="extern\GL\wglext.h">
+    <ClInclude Include="tigerengine\scene\scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="extern\GL\wgl.h">
+    <ClInclude Include="tigerengine\input\input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="extern\glad\glad.h">
+    <ClInclude Include="tigerengine\componentfactory\componentfactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="extern\KHR\khrplatform.h">
+    <ClInclude Include="tigerengine\gameobjectfactory\gameobjectfactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="extern\stb\stb_image.h">
+    <ClInclude Include="tigerengine\input\windows\wininput.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="extern\cgltf\cgltf.h">
+    <ClInclude Include="tigerengine\imgui\imguiwrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tigerengine\imgui\windows\winimguiwrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

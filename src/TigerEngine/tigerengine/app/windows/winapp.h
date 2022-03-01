@@ -1,21 +1,27 @@
 #pragma once
+
 #include "jaguarcore/app/iapp.h"
+#include "leopardgraphics/display/idisplay.h"
 
 #include <windows.h>
+#include <tigerengine/app/windows/winglcontext.h>
 
 namespace tgr
 {
-	class WinApp : public jgr::iApp
+	class WinApp : public jgr::iApp, public lpd::iDisplay
 	{
 	public:
-		void Init(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, int iCmdShow);
+		void Startup(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, int iCmdShow);
 		void Run() override;
 
 		void OnWindowClose() override;
 		void OnWindowDestroyed() override;
 
-		inline void SetHWND(HWND hwnd) { m_HWND = hwnd; }
-		inline HWND GetHWND() { return m_HWND; }
+		lpd::Rect GetClientRect() const override;
+		bool IsVsyncEnabled() const override;
+		void SwapBuffers() override;
+		
+		inline static WinApp* GetInstance() { return ms_Instance; }
 
 	private:
 		HINSTANCE m_hInstance;
@@ -23,7 +29,10 @@ namespace tgr
 		PSTR m_szCmdLine; 
 		int m_iCmdShow;
 
-		HWND m_HWND;
 		bool m_IsRunning = false;
+
+		WinGLContext m_WinGLContext;
+
+		static WinApp* ms_Instance;
 	};
 }
