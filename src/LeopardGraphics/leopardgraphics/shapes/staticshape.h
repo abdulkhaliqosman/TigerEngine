@@ -13,6 +13,7 @@ namespace lpd
 		void Set() override;
 		void Bind(Shader& shader) override;
 		void Unbind(Shader& shader) override;
+		void Render(Shader& shader) override;
 
 		virtual const vec3* GetVertices() const = 0;
 		virtual unsigned int GetVertexCount() const = 0;

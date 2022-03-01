@@ -10,6 +10,7 @@ namespace lpd
 		virtual void Set() = 0;
 		virtual void Bind(Shader& shader) = 0;
 		virtual void Unbind(Shader& shader) = 0;
+		virtual void Render(Shader& shader) = 0;
 
 	private:
 		Attribute<vec3> m_PosAttrib;

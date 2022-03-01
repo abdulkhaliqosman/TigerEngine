@@ -5,13 +5,15 @@
 #include "leopardgraphics/graphics/glgraphics/draw.h"
 #include "leopardgraphics/shapes/shape.h"
 #include "jaguarcore/gameobject/gameobject.h"
-#include "lionanimation/animation/animpose.h"
 
 namespace lpd
 {
 	void GraphicsComponent::Startup()
 	{
-
+		if (m_Shape)
+		{
+			m_Shape->Set();
+		}
 	}
 
 	void GraphicsComponent::Update()
@@ -33,20 +35,11 @@ namespace lpd
 	{
 		if (m_Shape)
 		{
+			const mat4& transform = GetGameObject()->GetTransform()->GetGlobalTransform();
+			Uniform<mat4>::Set(shader.GetUniform("model"), transform);
 			m_Shape->Bind(shader);
+			m_Shape->Render(shader);
+			m_Shape->Unbind(shader);
 		}
-
-		if (m_AnimPose)
-		{
-			Uniform<mat4>::Set(shader.GetUniform("jointTransform"), m_AnimPose->GetJointTransforms());
-			Uniform<bool>::Set(shader.GetUniform("hasPose"), true);
-		}
-		else
-		{
-			Uniform<bool>::Set(shader.GetUniform("hasPose"), false);
-		}
-			
-		const mat4& transform = GetGameObject()->GetTransform()->GetGlobalTransform();
-		Uniform<mat4>::Set(shader.GetUniform("model"), transform);
 	}
 }

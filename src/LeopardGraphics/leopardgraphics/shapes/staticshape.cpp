@@ -1,5 +1,6 @@
 #include <leopardgraphics/leopardpch.h>
 #include <leopardgraphics/shapes/staticshape.h>
+#include "leopardgraphics/graphics/glgraphics/draw.h"
 
 namespace lpd
 {
@@ -36,4 +37,8 @@ namespace lpd
 		GetNormalAttrib().UnBindFrom(shader.GetAttribute("normal"));
 	}
 
+	void StaticShape::Render(Shader& shader)
+	{
+		Draw(m_ElementBuffer, DrawMode::Triangles);
+	}
 }

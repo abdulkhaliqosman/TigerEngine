@@ -10,7 +10,8 @@ namespace jgr
 
 	void TransformComponent::Update()
 	{
-
+		m_LocalTransform = jgr::Transform::CreateTransformMatrix(m_Position, m_Rotation, m_Scale);
+		m_GlobalTransform = m_LocalTransform;
 	}
 
 	void TransformComponent::Shutdown()

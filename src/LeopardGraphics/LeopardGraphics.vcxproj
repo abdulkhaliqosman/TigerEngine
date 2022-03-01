@@ -134,7 +134,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)LionAnimation.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)Extern.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="leopardgraphics\component\animatorcomponent.h" />
     <ClInclude Include="leopardgraphics\component\graphicscomponent.h" />
     <ClInclude Include="leopardgraphics\display\idisplay.h" />
     <ClInclude Include="leopardgraphics\graphics\glgraphics\attribute.h" />
@@ -181,6 +182,7 @@
     <ClInclude Include="leopardgraphics\shapes\staticshape.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="leopardgraphics\component\animatorcomponent.cpp" />
     <ClCompile Include="leopardgraphics\component\graphicscomponent.cpp" />
     <ClCompile Include="leopardgraphics\dllmain.cpp" />
     <ClCompile Include="leopardgraphics\graphics\glgraphics\attribute.cpp" />

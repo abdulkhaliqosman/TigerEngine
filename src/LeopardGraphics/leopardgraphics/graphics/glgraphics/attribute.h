@@ -43,6 +43,26 @@ template Attribute<vec2>;
 template Attribute<vec3>;
 template Attribute<vec4>;
 
+
+template<>
+LEOPARD_DLL void Attribute<int>::SetAttribPointer(unsigned int slot) const;
+
+template<>
+LEOPARD_DLL void Attribute<ivec4>::SetAttribPointer(unsigned int slot) const;
+
+template<>
+LEOPARD_DLL void Attribute<float>::SetAttribPointer(unsigned int slot) const;
+
+template<>
+LEOPARD_DLL void Attribute<vec2>::SetAttribPointer(unsigned int slot) const;
+
+template<>
+LEOPARD_DLL void Attribute<vec3>::SetAttribPointer(unsigned int slot) const;
+
+template<>
+LEOPARD_DLL void Attribute<vec4>::SetAttribPointer(unsigned int slot) const;
+
+
 template<typename T>
 Attribute<T>::Attribute()
 {

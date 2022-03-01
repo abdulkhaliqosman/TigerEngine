@@ -6,21 +6,26 @@
 #include <leopardgraphics/shapes/shape.h>
 #include <vector>
 
+namespace lion
+{
+	class AnimPose;
+}
+
 namespace lpd
 {
 	class Shader;
-	class Pose;
+	
 
 	class Mesh : public Shape
 	{
 	public:
-		void Set();
+		void Set() override;
 		void Bind(Shader& shader) override;
 		void Unbind(Shader& shader) override;
 
-		void Render(const Shader& shader);
+		void Render(Shader& shader) override;
 
-		inline void SetPose(const Pose* pose) { m_Pose = pose; }
+		inline void SetPose(const lion::AnimPose* pose) { m_Pose = pose; }
 
 		std::vector<vec3> m_Position;
 		std::vector<vec3> m_Normal;
@@ -39,7 +44,21 @@ namespace lpd
 		ElementBuffer m_ElementBuffer;
 
 	private:
-		const Pose* m_Pose;
+		const lion::AnimPose* m_Pose;
 	};
 
+	class MeshGroup : public Shape
+	{
+	public:
+		virtual ~MeshGroup() { for (auto* mesh : m_Meshes) { delete mesh; } }
+
+		void Set() override;
+		void Bind(Shader& shader) override;
+		void Unbind(Shader& shader) override;
+		void Render(Shader& shader) override;
+
+
+		std::vector<Mesh*> m_Meshes;
+	};
 }
+

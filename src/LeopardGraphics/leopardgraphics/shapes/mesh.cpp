@@ -3,6 +3,7 @@
 
 #include "leopardgraphics/graphics/glgraphics/glgraphics.h"
 #include "leopardgraphics/graphics/glgraphics/draw.h"
+#include "lionanimation/animation/animpose.h"
 
 namespace lpd
 {
@@ -22,8 +23,11 @@ namespace lpd
 	{
 		m_PosAttrib.BindTo(shader.GetAttribute("position"));
 		m_NormalAttrib.BindTo(shader.GetAttribute("normal"));
-		m_JointsAttrib.BindTo(shader.GetAttribute("joints"));
-		m_WeightsAttrib.BindTo(shader.GetAttribute("weights"));
+		if (m_Pose)
+		{
+			m_JointsAttrib.BindTo(shader.GetAttribute("joints"));
+			m_WeightsAttrib.BindTo(shader.GetAttribute("weights"));
+		}
 
 	}
 
@@ -31,21 +35,57 @@ namespace lpd
 	{
 		m_PosAttrib.UnBindFrom(shader.GetAttribute("position"));
 		m_NormalAttrib.UnBindFrom(shader.GetAttribute("normal"));
-		m_JointsAttrib.UnBindFrom(shader.GetAttribute("joints"));
-		m_WeightsAttrib.UnBindFrom(shader.GetAttribute("weights"));
+		if (m_Pose)
+		{
+			m_JointsAttrib.UnBindFrom(shader.GetAttribute("joints"));
+			m_WeightsAttrib.UnBindFrom(shader.GetAttribute("weights"));
+		}
 	}
 
-	void Mesh::Render(const Shader& shader)
+	void Mesh::Render(Shader& shader)
 	{
-
-
+		if (m_Pose)
+		{
+			Uniform<mat4>::Set(shader.GetUniform("jointTransform"), m_Pose->GetJointTransforms());
+			Uniform<bool>::Set(shader.GetUniform("hasPose"), true);
+		}
+		else
 		{
 			Uniform<bool>::Set(shader.GetUniform("hasPose"), false);
 		}
 
 		Draw(m_ElementBuffer, DrawMode::Triangles);
+	}
 
-		m_NormalAttrib.UnBindFrom(shader.GetAttribute("normal"));
-		m_PosAttrib.UnBindFrom(shader.GetAttribute("position"));
+	void MeshGroup::Bind(Shader& shader)
+	{
+		for (auto mesh : m_Meshes)
+		{
+			mesh->Bind(shader);
+		}
+	}
+
+	void MeshGroup::Unbind(Shader& shader)
+	{
+		for (auto mesh : m_Meshes)
+		{
+			mesh->Unbind(shader);
+		}
+	}
+
+	void MeshGroup::Set()
+	{
+		for (auto mesh : m_Meshes)
+		{
+			mesh->Set();
+		}
+	}
+
+	void MeshGroup::Render(Shader& shader)
+	{
+		for (auto mesh : m_Meshes)
+		{
+			mesh->Render(shader);
+		}
 	}
 }

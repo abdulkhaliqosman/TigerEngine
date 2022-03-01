@@ -24,6 +24,10 @@ namespace lpd
 
 		m_VertexArray.Bind(0);
 		m_Cube.Set();
+		for (GraphicsComponent* gc : m_GraphicsComponents)
+		{
+			gc->Startup();
+		}
 		m_VertexArray.Unbind();
 
 
@@ -55,9 +59,9 @@ namespace lpd
 		// TODO: sort by shape
 		
 
-		for (const GraphicsComponent* gc : m_GraphicsComponents)
+		for (GraphicsComponent* gc : m_GraphicsComponents)
 		{
-
+			gc->Render(m_Shader);
 		}
 
 		m_Cube.GetPosAttrib().BindTo(m_Shader.GetAttribute("position"));

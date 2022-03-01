@@ -43,10 +43,10 @@ namespace lpd
 	}
 #undef ENUM_TO_STRING
 
-	std::vector<Mesh*> GLTFMeshLoader::LoadMesh(const std::string& path) const
+	MeshGroup* GLTFMeshLoader::LoadMesh(const std::string& path) const
 	{
 		cgltf_data* gltf = LoadGLTFFile(path.c_str());
-		std::vector<Mesh*> meshGroup;
+		MeshGroup* meshGroup = new MeshGroup;
 
 		auto* nodes = gltf->nodes;
 		auto nodes_count = gltf->nodes_count;
@@ -65,7 +65,7 @@ namespace lpd
 				for (int j = 0; j < primitives_count; ++j)
 				{
 					Mesh* mesh = new Mesh;
-					meshGroup.push_back(mesh);
+					meshGroup->m_Meshes.push_back(mesh);
 
 					const cgltf_primitive& primitive = gltf_mesh->primitives[j];
 					std::cout << GetPrimitiveTypeString(primitive.type) << std::endl;

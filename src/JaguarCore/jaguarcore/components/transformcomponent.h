@@ -29,7 +29,7 @@ namespace jgr
 		quat m_Rotation = quat::Identity();
 		vec3 m_Scale = vec3::One();
 
-		mat4 m_LocalTransform;
-		mat4 m_GlobalTransform;
+		mat4 m_LocalTransform = mat4::Identity();
+		mat4 m_GlobalTransform = mat4::Identity();
 	};
 }
