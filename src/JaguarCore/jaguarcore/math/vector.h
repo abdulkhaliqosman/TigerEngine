@@ -93,8 +93,8 @@ namespace jgr
 		template<typename = typename std::enable_if<constexpr_greater_or_equal(U, 4u)>::type>
 		T& w() { return m_Data[3]; }
 
-		inline T operator[](int i) const { return m_Data[i]; }
-		inline T& operator[](int i) { return m_Data[i]; }
+		inline T operator[](unsigned int i) const { return m_Data[i]; }
+		inline T& operator[](unsigned int i) { return m_Data[i]; }
 
 		static float Dot(const Vector<T, U>& lhs, const Vector<T, U>& rhs);
 

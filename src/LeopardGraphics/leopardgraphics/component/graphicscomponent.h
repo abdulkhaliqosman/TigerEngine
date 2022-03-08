@@ -19,7 +19,7 @@ namespace lpd
 		void Update() override;
 		void Shutdown() override;
 
-		LEOPARD_DLL void AddShape(Shape* shape);
+		void AddShape(Shape* shape);
 		void Render(Shader& shader);
 
 	private:

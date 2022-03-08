@@ -69,7 +69,7 @@ namespace tgr
 
 	void WinGLContext::CreateContext()
 	{
-		HDC hdc = GetDC(m_HWND);
+		m_HDC = GetDC(m_HWND);
 
 		// Create openGL context
 		// 6. Find the correct pixel format and apply to device context
@@ -84,12 +84,12 @@ namespace tgr
 		pfd.cStencilBits = 8;
 		pfd.iLayerType = PFD_MAIN_PLANE;
 
-		int pixelFormat = ChoosePixelFormat(hdc, &pfd);
-		SetPixelFormat(hdc, pixelFormat, &pfd);
+		int pixelFormat = ChoosePixelFormat(m_HDC, &pfd);
+		SetPixelFormat(m_HDC, pixelFormat, &pfd);
 
 		// 7. Create temp legacy opengl context
-		HGLRC tempRC = wglCreateContext(hdc);
-		wglMakeCurrent(hdc, tempRC);
+		HGLRC tempRC = wglCreateContext(m_HDC);
+		wglMakeCurrent(m_HDC, tempRC);
 		PFNWGLCREATECONTEXTATTRIBSARBPROC
 			wglCreateContextAttribsARB = NULL;
 		wglCreateContextAttribsARB =
@@ -109,10 +109,10 @@ namespace tgr
 			0,
 		};
 
-		HGLRC hglrc = wglCreateContextAttribsARB(hdc, 0, attribList);
+		HGLRC hglrc = wglCreateContextAttribsARB(m_HDC, 0, attribList);
 		wglMakeCurrent(NULL, NULL);
 		wglDeleteContext(tempRC);
-		wglMakeCurrent(hdc, hglrc);
+		wglMakeCurrent(m_HDC, hglrc);
 
 		// 9. Use glad to load gl
 		if (!gladLoadGL())
@@ -142,13 +142,12 @@ namespace tgr
 
 	void WinGLContext::SwapBuffers()
 	{
-		HDC hdc = GetDC(m_HWND);
-		::SwapBuffers(hdc);
+		::SwapBuffers(m_HDC);
 
-		if (GetVSyncEnabled())
-		{
-			glFinish();
-		}
+		// if (GetVSyncEnabled())
+		// {
+		// 	glFinish();
+		// }
 	}
 
 	void WinGLContext::DestroyWindow()
@@ -159,11 +158,10 @@ namespace tgr
 
 	void WinGLContext::DestroyContext()
 	{
-		HDC hdc = GetDC(m_HWND);
 		HGLRC hglrc = wglGetCurrentContext();
 		wglMakeCurrent(NULL, NULL);
 		wglDeleteContext(hglrc);
-		ReleaseDC(m_HWND, hdc);
+		ReleaseDC(m_HWND, m_HDC);
 	}
 
 	void WinGLContext::SetEnableVSync(bool value)

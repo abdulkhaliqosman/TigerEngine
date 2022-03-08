@@ -1,3 +1,6 @@
 [submodule "submodules/ImGui"]
 	path = submodules/ImGui
 	url = https://github.com/ocornut/imgui.git
+[submodule "submodules/Optick"]
+	path = submodules/Optick
+	url = https://github.com/bombomby/optick.git

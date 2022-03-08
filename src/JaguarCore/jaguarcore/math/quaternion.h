@@ -35,7 +35,7 @@ namespace jgr
 			return Quaternion(norm.x() * s, norm.y() * s, norm.z() * s, cosf(angle * 0.5f));
 		}
 
-		Quaternion FromEulerAngles(const EulerAngles& eulerAngles)
+		static Quaternion FromEulerAngles(const EulerAngles& eulerAngles)
 		{
 			Quaternion pitch = AngleAxis(Math::DegToRad(eulerAngles.pitch), BaseType::Right());
 			Quaternion yaw = AngleAxis(Math::DegToRad(eulerAngles.yaw), BaseType::Up());

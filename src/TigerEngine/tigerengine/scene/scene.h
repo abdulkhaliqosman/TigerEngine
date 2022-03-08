@@ -5,6 +5,7 @@
 namespace jgr
 {
 	class GameObject;
+	class TransformComponent;
 }
 
 namespace tgr
@@ -19,8 +20,13 @@ namespace tgr
 
 		inline void SetEngine(Engine* value) { m_Engine = value; }
 
+		jgr::GameObject* CreateGameObject();
+		jgr::TransformComponent* CreateTransformComponent(jgr::GameObject*);
+
+
 	private:
 		std::vector<jgr::GameObject*> m_GameObjects;
+		std::vector<jgr::TransformComponent*> m_TransformComponents;
 		Engine* m_Engine;
 	};
 }

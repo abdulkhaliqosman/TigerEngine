@@ -18,7 +18,7 @@ namespace jgr
 	class Log
 	{
 	public:
-		JAGUAR_DLL static LogLevel g_LogLevel;
+		static LogLevel g_LogLevel;
 
 		static constexpr LogLevel DefaultLogLevel = LogLevel::Debug;
 	};

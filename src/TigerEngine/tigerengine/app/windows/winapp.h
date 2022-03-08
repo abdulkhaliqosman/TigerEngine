@@ -13,6 +13,7 @@ namespace tgr
 	public:
 		void Startup(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, int iCmdShow);
 		void Run() override;
+		void Shutdown();
 
 		void OnWindowClose() override;
 		void OnWindowDestroyed() override;

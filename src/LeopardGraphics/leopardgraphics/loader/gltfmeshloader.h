@@ -11,7 +11,6 @@ namespace lpd
 	class GLTFMeshLoader
 	{
 	public:
-		LEOPARD_DLL MeshGroup* LoadMesh(const std::string& path) const;
-		AnimPose* LoadSkeleton(const std::string& path) const;
+		MeshGroup* LoadMesh(const std::string& path) const;
 	};
 }

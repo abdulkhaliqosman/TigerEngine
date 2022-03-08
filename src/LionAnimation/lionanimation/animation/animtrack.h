@@ -93,6 +93,8 @@ namespace lion
 
 				}
 			}
+
+			return T{};
 		}
 
 		bool Empty() const { return m_Track.size() == 0; }

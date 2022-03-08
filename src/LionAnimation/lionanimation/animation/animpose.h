@@ -16,6 +16,7 @@ namespace lion
 		mat4 globalTransform = mat4::Identity();
 
 		bool computedGlobal = false;
+		bool computedLocal = false;
 
 		int m_Id = -1;
 		int m_ParentId = -1;
@@ -48,7 +49,7 @@ namespace lion
 		const std::vector<mat4>& GetJointTransforms() const { return m_JointTransforms; }
 
 	private:
-		mat4 ComputeGlobalTransform(int id);
+		mat4 ComputeTransform(int id);
 		std::vector<Joint> m_Joints;
 
 		std::vector<mat4> m_JointTransforms;

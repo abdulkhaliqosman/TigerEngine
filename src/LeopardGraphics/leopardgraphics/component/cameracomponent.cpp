@@ -1,31 +1,17 @@
 #include <leopardgraphics/leopardpch.h>
 #include <leopardgraphics/component/cameracomponent.h>
 
+#include <jaguarcore/math/camera.h>
+
 namespace lpd
 {
-	mat4 CameraComponent::CreatePerspectiveMatrix(float nearPlane, float farPlane, float top, float right)
+	void CameraComponent::SetOrthographic()
 	{
-		mat4 result;
-
-		result[0][0] = nearPlane / right;
-		result[1][1] = nearPlane / top;
-		result[2][2] = -(farPlane + nearPlane) / (farPlane - nearPlane);
-		result[3][2] = -(2 * farPlane * nearPlane) / (farPlane - nearPlane);
-		result[2][3] = -1;
-
-		return result;
+		m_Projection = jgr::Camera::CreateOrthographicMatrix(m_NearPlane, m_FarPlane, m_Top, m_Right);
 	}
 
-	mat4 CameraComponent::CreateOrthoMatrix(float nearPlane, float farPlane, float top, float right)
+	void CameraComponent::SetPerspective()
 	{
-		mat4 result;
-
-		result[0][0] = 1 / right;
-		result[1][1] = 1 / top;
-		result[2][2] = -2 / (farPlane - nearPlane);
-		result[3][2] = -(farPlane + nearPlane) / (farPlane - nearPlane);
-		result[3][3] = -1;
-
-		return result;
+		m_Projection = jgr::Camera::CreatePerspectiveMatrix(m_NearPlane, m_FarPlane, m_Top, m_Right);
 	}
 }

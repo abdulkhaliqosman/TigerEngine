@@ -6,6 +6,7 @@
 
 #include <tigerengine/app/windows/winglcontext.h>
 #include <tigerengine/imgui/windows/winimguiwrapper.h>
+#include "optick.h"
 
 namespace tgr
 {
@@ -19,34 +20,48 @@ namespace tgr
 		m_iCmdShow = iCmdShow;
 
 		ms_Instance = this;
+
+		jgr::Memory::Startup();
 	}
 
 	void WinApp::Run()
 	{
-		m_WinGLContext.MakeWindow(m_hInstance, m_szCmdLine);
-		m_WinGLContext.CreateContext();
-
 		Engine engine;
 
-		auto* gfx = lpd::iGraphicsSystem::CreateGraphicsSystem();
-		gfx->SetDisplay(this);
+		{
+			OPTICK_FRAME("Startup");
+			m_WinGLContext.MakeWindow(m_hInstance, m_szCmdLine);
+			m_WinGLContext.CreateContext();
 
-		engine.SetGraphics(gfx);
+			
 
-		auto imgui = jgr::New <WinImGuiWrapper>();
-		engine.SetImGuiWrapper(imgui);
-		imgui->SetContext(&m_WinGLContext);
+			auto* gfx = lpd::iGraphicsSystem::CreateGraphicsSystem();
+			gfx->SetDisplay(this);
 
-		engine.Startup();
+			engine.SetGraphics(gfx);
 
-		m_IsRunning = true;
+			auto imgui = jgr::New <WinImGuiWrapper>();
+			engine.SetImGuiWrapper(imgui);
+			imgui->SetContext(&m_WinGLContext);
+
+			engine.Startup();
+
+			m_IsRunning = true;
+		}
+
 		while (m_IsRunning)
 		{
+			OPTICK_FRAME("MainThread");
 			m_WinGLContext.Update();
 			engine.Update();
 		}
 
 		engine.Shutdown();
+	}
+
+	void WinApp::Shutdown()
+	{
+		jgr::Memory::Shutdown();
 	}
 
 	void WinApp::OnWindowClose()
@@ -77,6 +92,7 @@ namespace tgr
 
 	void WinApp::SwapBuffers()
 	{
+		OPTICK_EVENT();
 		m_WinGLContext.SwapBuffers();
 	}
 }

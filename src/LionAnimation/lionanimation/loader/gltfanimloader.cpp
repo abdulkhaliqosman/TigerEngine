@@ -1,16 +1,15 @@
 #include <lionanimation/lionpch.h>
-#include "gltfanimloader.h"
+#include <lionanimation/loader/gltfanimloader.h>
 
 #include "lionanimation/animation/animclip.h"
 #include "lionanimation/animation/animpose.h"
 #include "jaguarcore/filetypes/gltf/gltfloader.h"
 #include "cgltf/cgltf.h"
 #include <iostream>
-
+#include <cassert>
 
 namespace lion
 {
-
 	namespace gltfloader
 	{
 		InterpolationType InterpolationGLTFToAnim(cgltf_interpolation_type type)
@@ -28,9 +27,9 @@ namespace lion
 			return InterpolationType::Invalid;
 		}
 
-		AnimPoseClip* LoadClip(const cgltf_animation& anim)
+		AnimClip* LoadClip(const cgltf_animation& anim)
 		{
-			AnimPoseClip* clip = new AnimPoseClip;
+			AnimClip* clip = jgr::New<AnimClip>();
 
 			for (int i = 0; i < anim.channels_count; ++i)
 			{
@@ -43,6 +42,11 @@ namespace lion
 					track.m_Name = channel.target_node->name;
 					clip->AddTrack(track);
 					idx = clip->GetIndex(channel.target_node->name);
+				}
+
+				if (idx == Joint::INVALID_ID)
+				{
+					assert(false);
 				}
 
 				const cgltf_animation_sampler& sampler = *channel.sampler;
@@ -149,6 +153,97 @@ namespace lion
 			std::cout << anim.name;
 			return clip;
 		}
+
+		AnimPose* LoadPose(const cgltf_skin& skin, cgltf_data* data)
+		{
+			AnimPose* result = jgr::New<AnimPose>();
+			const cgltf_node* nodes = data->nodes;
+			auto nodes_count = data->nodes_count;
+
+			for (int i = 0; i < skin.joints_count; ++i)
+			{
+				const cgltf_node* cgltfJoint = skin.joints[i];
+				Joint joint;
+				joint.m_Id = i;
+				joint.m_Name = cgltfJoint->name;
+
+				const cgltf_accessor* accessor = skin.inverse_bind_matrices;
+				float mat[16];
+
+				cgltf_accessor_read_float(accessor, i, mat, 16);
+
+				joint.m_InverseBindMatrices = mat4(mat);
+
+				if (cgltfJoint->has_translation)
+				{
+					joint.position = vec3(cgltfJoint->translation);
+				}
+
+				if (cgltfJoint->has_rotation)
+				{
+					joint.rotation = quat(cgltfJoint->rotation);
+				}
+
+				if (cgltfJoint->has_scale)
+				{
+					joint.scale = vec3(cgltfJoint->scale);
+				}
+
+				result->AddJoint(joint);
+			}
+
+			for (int j = 0; j < nodes_count; ++j)
+			{
+				const cgltf_node& cgltfJoint = nodes[j];
+				int idx = result->GetIndex(cgltfJoint.name);
+
+				if (idx == Joint::INVALID_ID)
+				{
+					Joint joint;
+					joint.m_Id = result->Size();
+					joint.m_Name = cgltfJoint.name;
+
+					if (cgltfJoint.has_translation)
+					{
+						joint.position = vec3(cgltfJoint.translation);
+					}
+
+					if (cgltfJoint.has_rotation)
+					{
+						joint.rotation = quat(cgltfJoint.rotation);
+					}
+
+					if (cgltfJoint.has_scale)
+					{
+						joint.scale = vec3(cgltfJoint.scale);
+					}
+
+					result->AddJoint(joint);
+				}
+			}
+
+			for (int j = 0; j < skin.joints_count; ++j)
+			{
+				const cgltf_node* cgltfJoint = skin.joints[j];
+				const cgltf_node* parent = cgltfJoint->parent;
+				if (parent != nullptr)
+				{
+					int idx = result->GetIndex(cgltfJoint->name);
+					int parentIdx = result->GetIndex(parent->name);
+					if (idx != Joint::INVALID_ID && parentIdx != Joint::INVALID_ID)
+					{
+						Joint& parentJoint = result->GetJoint(parentIdx);
+						Joint& joint = result->GetJoint(idx);
+
+						joint.m_ParentId = parentIdx;
+						parentJoint.m_ChildrenId.push_back(idx);
+					}
+				}
+			}
+
+			return result;
+		}
+
 	}
 
 	GLTFAnimLoader::~GLTFAnimLoader()
@@ -160,6 +255,7 @@ namespace lion
 	{
 		UnloadFile();
 		m_Data = LoadGLTFFile(path.c_str());
+		m_Path = path;
 	}
 
 	void GLTFAnimLoader::UnloadFile()
@@ -171,93 +267,35 @@ namespace lion
 		}
 	}
 
-	std::vector<AnimPoseClip*> GLTFAnimLoader::LoadAnimClips() const
+	std::vector<AnimClip*> GLTFAnimLoader::LoadAnimClips() const
 	{
-		std::vector<AnimPoseClip*> result;
+		std::vector<AnimClip*> result;
 
 		for (int i = 0; i < m_Data->animations_count; ++i)
 		{
 			const cgltf_animation& anim = m_Data->animations[i];
-			result.push_back(gltfloader::LoadClip(anim));
+			auto* clip = gltfloader::LoadClip(anim);
+			clip->SetPath(m_Path);
+			result.push_back(clip);
 		}
 
 		return result;
 	}
 
-	AnimPose* GLTFAnimLoader::LoadPose() const
+	std::vector<AnimPose*> GLTFAnimLoader::LoadPoses() const
 	{
-		AnimPose* result = new AnimPose;
-
-		const cgltf_node* nodes = m_Data->nodes;
-		auto nodes_count = m_Data->nodes_count;
+		std::vector<AnimPose*> result;
 
 		std::cout << "Loading Animation Poses" << std::endl;
 
-		for (int j = 0; j < nodes_count; ++j)
+		for (int i = 0; i < m_Data->skins_count; ++i)
 		{
-			const cgltf_node& cgltfJoint = nodes[j];
-			std::cout << "joint name: " << cgltfJoint.name << " addr: " << &cgltfJoint << std::endl;
-
-			Joint joint;
-			joint.m_Id = j;
-			joint.m_Name = cgltfJoint.name;
-
-			if (cgltfJoint.has_translation)
-			{
-				joint.position = vec3(cgltfJoint.translation);
-			}
-
-			if (cgltfJoint.has_rotation)
-			{
-				joint.rotation = quat(cgltfJoint.rotation);
-			}
-
-			if (cgltfJoint.has_scale)
-			{
-				joint.scale = vec3(cgltfJoint.scale);
-			}
-
-			result->AddJoint(joint);
-		}
-
-		for (int j = 0; j < nodes_count; ++j)
-		{
-			const cgltf_node& cgltfJoint = nodes[j];
-			const cgltf_node* parent = cgltfJoint.parent;
-			if (parent != nullptr)
-			{
-				int idx = result->GetIndex(cgltfJoint.name);
-				int parentIdx = result->GetIndex(parent->name);
-				if (idx != Joint::INVALID_ID && parentIdx != Joint::INVALID_ID)
-				{
-					Joint& parentJoint = result->GetJoint(parentIdx);
-					Joint& joint = result->GetJoint(idx);
-
-					joint.m_ParentId = parentIdx;
-					parentJoint.m_ChildrenId.push_back(idx);
-				}
-			}
-
-			if (cgltf_skin* skin = cgltfJoint.skin)
-			{
-				for (int k = 0; k < skin->joints_count; ++k)
-				{
-					cgltf_node* cgltfSkinJoint = skin->joints[k];
-					int idx = result->GetIndex(cgltfSkinJoint->name);
-					if (idx != Joint::INVALID_ID)
-					{
-						Joint& joint = result->GetJoint(idx);
-						const cgltf_accessor* accessor = skin->inverse_bind_matrices;
-						float mat[16];
-
-						cgltf_accessor_read_float(accessor, k, mat, 16);
-
-						joint.m_InverseBindMatrices = mat4(mat);
-					}
-				}
-			}
+			const cgltf_skin& skin = m_Data->skins[i];
+			result.push_back(gltfloader::LoadPose(skin, m_Data));
 		}
 
 		return result;
 	}
+
+	
 }

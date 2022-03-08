@@ -25,8 +25,6 @@ namespace lpd
 
 		void Render(Shader& shader) override;
 
-		inline void SetPose(const lion::AnimPose* pose) { m_Pose = pose; }
-
 		std::vector<vec3> m_Position;
 		std::vector<vec3> m_Normal;
 		
@@ -44,13 +42,12 @@ namespace lpd
 		ElementBuffer m_ElementBuffer;
 
 	private:
-		const lion::AnimPose* m_Pose;
 	};
 
 	class MeshGroup : public Shape
 	{
 	public:
-		virtual ~MeshGroup() { for (auto* mesh : m_Meshes) { delete mesh; } }
+		virtual ~MeshGroup() { for (auto* mesh : m_Meshes) { jgr::Delete(mesh); } }
 
 		void Set() override;
 		void Bind(Shader& shader) override;

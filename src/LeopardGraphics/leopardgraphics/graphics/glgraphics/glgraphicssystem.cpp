@@ -6,6 +6,11 @@
 #include "draw.h"
 
 #include <leopardgraphics/component/graphicscomponent.h>
+#include <leopardgraphics/component/cameracomponent.h>
+#include <jaguarcore/gameobject/gameobject.h>
+#include <leopardgraphics/shapes/mesh.h>
+#include "leopardgraphics/shapes/skeletalmesh.h"
+#include "optick.h"
 
 namespace lpd
 {
@@ -24,10 +29,17 @@ namespace lpd
 
 		m_VertexArray.Bind(0);
 		m_Cube.Set();
+		for (CameraComponent* cc : m_CameraComponents)
+		{
+			cc->Startup();
+		}
+
 		for (GraphicsComponent* gc : m_GraphicsComponents)
 		{
 			gc->Startup();
 		}
+
+
 		m_VertexArray.Unbind();
 
 
@@ -35,6 +47,7 @@ namespace lpd
 
 	void GLGraphicsSystem::Update()
 	{
+		OPTICK_EVENT();
 		Rect clientRect = m_Display->GetClientRect();
 
 		int clientWidth = clientRect.right - clientRect.left;
@@ -55,6 +68,12 @@ namespace lpd
 
 		mat4 view = mat4::Identity();
 		mat4 projection = mat4::Identity();
+
+		if (m_ActiveCamera)
+		{
+			projection = m_ActiveCamera->GetProjectionMatrix();
+			view = m_ActiveCamera->GetGameObject()->GetTransform()->GetGlobalTransform();
+		}
 
 		// TODO: sort by shape
 		
@@ -77,6 +96,23 @@ namespace lpd
 	void GLGraphicsSystem::Shutdown()
 	{
 		m_VertexArray.Unload();
+
+		for (auto* elem : m_GraphicsComponents)
+		{
+			elem->Shutdown();
+			jgr::Delete(elem);
+		}
+
+		for (auto* elem : m_CameraComponents)
+		{
+			elem->Shutdown();
+			jgr::Delete(elem);
+		}
+
+		for (auto* elem : m_Shapes)
+		{
+			jgr::Delete(elem);
+		}
 	}
 
 	void GLGraphicsSystem::SetDisplay(iDisplay* value) { m_Display = value; }
@@ -85,9 +121,14 @@ namespace lpd
 	GraphicsComponent* GLGraphicsSystem::CreateGraphicsComponent()
 	{
 		auto result = jgr::New<lpd::GraphicsComponent>();
-
 		m_GraphicsComponents.push_back(result);
+		return result;
+	}
 
+	CameraComponent* GLGraphicsSystem::CreateCameraComponent()
+	{
+		auto result = jgr::New<lpd::CameraComponent>();
+		m_CameraComponents.push_back(result);
 		return result;
 	}
 
@@ -99,5 +140,31 @@ namespace lpd
 
 		glClearColor(0.5f, 0.6f, 0.7f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	}
+
+	MeshGroup* GLGraphicsSystem::LoadMesh(const std::string& path)
+	{
+		for (auto* shape : m_Shapes)
+		{
+			if (shape->GetPath() == path)
+			{
+				return dynamic_cast<MeshGroup*>(shape);
+			}
+		}
+
+		lpd::GLTFMeshLoader meshLoader;
+		auto* meshGroup = meshLoader.LoadMesh(path);
+		meshGroup->SetPath(path);
+
+		m_Shapes.push_back(meshGroup);
+
+		return meshGroup;
+	}
+
+	SkeletalMesh* GLGraphicsSystem::CreateSkeletalMesh()
+	{
+		auto result = jgr::New<SkeletalMesh>();
+		m_SkeletalMeshes.push_back(result);
+		return result;
 	}
 }

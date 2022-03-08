@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "animpose.h"
+#include <cassert>
 
 namespace lion
 {
@@ -17,32 +18,31 @@ namespace lion
 		AnimTransformTrack m_TransformTrack;
 	};
 
-	class AnimPoseClip
+	class AnimClip
 	{
 	public:
-		void Sample(float time, AnimPose& outPose, float& outTime) const;
-		float GetAdjustedTime(float time) const;
+		void Sample(float time, AnimPose& outPose, float& outTime, bool loop) const;
+		float GetAdjustedTime(float time, bool loop) const;
 
 		int GetIndex(const std::string& id) const;
 		void AddTrack(const JointTrack& track);
 
-		inline JointTrack& GetTrack(int i) { return m_Tracks[i]; }
+		inline JointTrack& GetTrack(int i) { assert(i >= 0 && i < m_Tracks.size()); return m_Tracks[i]; }
 
 		inline float GetStartTime() { return m_StartTime; }
 		inline float GetEndTime() { return m_EndTime; }
-		inline bool GetLoop() { return m_Loop; }
 
 		void SetStartTime(float value) { m_StartTime = value; }
 		void SetEndTime(float value) { m_EndTime = value; }
-		void SetLoop(bool value) { m_Loop = value; }
 
+		inline const std::string& GetPath() const { return m_Path; }
+		inline void SetPath(const std::string&path) { m_Path = path; }
 	private:
+		std::string m_Path;
 		JointIndexMap m_NameJointMap;
 		std::vector<JointTrack> m_Tracks;
 
 		float m_StartTime = 0.0f;
 		float m_EndTime = 0.0f;
-		bool m_Loop = false;
-
 	};
 }

@@ -19,4 +19,5 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine,
 	tgr::WinApp winApp;
 	winApp.Startup(hInstance, hPrevInstance, szCmdLine, iCmdShow);
 	winApp.Run();
+	winApp.Shutdown();
 }

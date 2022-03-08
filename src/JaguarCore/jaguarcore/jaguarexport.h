@@ -1,13 +1,5 @@
 #pragma once
 
-#ifdef JAGUARCORE_EXPORTS 
-/*Enabled as "export" while compiling the dll project*/
-#define JAGUAR_DLL __declspec(dllexport)  
-#else
-/*Enabled as "import" in the Client side for using already created dll file*/
-#define JAGUAR_DLL __declspec(dllimport)  
-#endif
-
 #include "jaguarcore/memory/memory.h"
 #include "jaguarcore/log/log.h"
 #include "jaguarcore/math/math.h"

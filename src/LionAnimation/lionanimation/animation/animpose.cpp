@@ -1,5 +1,6 @@
 #include <lionanimation/lionpch.h>
 #include "animpose.h"
+#include "optick.h"
 
 namespace lion
 {
@@ -28,16 +29,18 @@ namespace lion
 
 	void AnimPose::ComputeGlobalTransforms()
 	{
+		OPTICK_EVENT();
 		auto sz = m_Joints.size();
 
 		for (int i = 0; i < sz; ++i)
 		{
 			m_Joints[i].computedGlobal = false;
+			m_Joints[i].computedLocal = false;
 		}
 
 		for (int i = 0; i < sz; ++i)
 		{
-			ComputeGlobalTransform(i);
+			ComputeTransform(i);
 		}
 
 		m_JointTransforms.resize(sz);
@@ -47,9 +50,14 @@ namespace lion
 		}
 	}
 
-	mat4 AnimPose::ComputeGlobalTransform(int id)
+	mat4 AnimPose::ComputeTransform(int id)
 	{
 		Joint& joint = m_Joints[id];
+		if (!joint.computedLocal)
+		{
+			joint.localTransform = jgr::Transform::CreateTransformMatrix(joint.position, joint.rotation, joint.scale);
+			joint.computedLocal = true;
+		}
 
 		if (joint.computedGlobal)
 		{
@@ -63,7 +71,7 @@ namespace lion
 		}
 		else
 		{
-			joint.globalTransform = ComputeGlobalTransform(joint.m_ParentId) * joint.localTransform;;
+			joint.globalTransform = ComputeTransform(joint.m_ParentId) * joint.localTransform;
 		}
 
 		joint.computedGlobal = true;

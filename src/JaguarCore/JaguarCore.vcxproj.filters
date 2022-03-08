@@ -24,10 +24,7 @@
     <ClInclude Include="jaguarcore\system\isystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="jaguarcore\thread\thread.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="jaguarcore\thread\windows\winthread.h">
+    <ClInclude Include="jaguarcore\thread\threadpool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="jaguarcore\math\matrix.h">
@@ -57,9 +54,6 @@
     <ClInclude Include="jaguarcore\log\log.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="jaguarcore\thread\threadpool.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="jaguarcore\math\interpolation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -87,21 +81,27 @@
     <ClInclude Include="jaguarcore\filetypes\gltf\gltfloader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="jaguarcore\components\componentcontainer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jaguarcore\math\camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jaguarcore\thread\jobsystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jaguarcore\thread\jobqueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jaguarcore\dllmain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="jaguarcore\thread\windows\winthread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="jaguarcore\jaguarpch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="jaguarcore\log\log.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="jaguarcore\thread\threadpool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="jaguarcore\components\transformcomponent.cpp">
@@ -114,6 +114,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="jaguarcore\filetypes\gltf\gltfloader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="jaguarcore\memory\memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="jaguarcore\thread\jobsystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="jaguarcore\thread\jobqueue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

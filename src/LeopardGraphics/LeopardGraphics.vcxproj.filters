@@ -75,7 +75,7 @@
     <ClInclude Include="leopardgraphics\shapes\staticshape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="leopardgraphics\component\animatorcomponent.h">
+    <ClInclude Include="leopardgraphics\shapes\skeletalmesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -134,7 +134,7 @@
     <ClCompile Include="leopardgraphics\shapes\staticshape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="leopardgraphics\component\animatorcomponent.cpp">
+    <ClCompile Include="leopardgraphics\shapes\skeletalmesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

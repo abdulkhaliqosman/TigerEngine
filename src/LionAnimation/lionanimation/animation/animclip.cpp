@@ -1,12 +1,14 @@
 #include <lionanimation/lionpch.h>
-#include "animclip.h"
-#include "animpose.h"
+#include <lionanimation/animation/animclip.h>
+#include <lionanimation/animation/animpose.h>
 
 #include <cmath>
+#include <cassert>
+#include "optick.h"
 
 namespace lion
 {
-	int AnimPoseClip::GetIndex(const std::string& str) const
+	int AnimClip::GetIndex(const std::string& str) const
 	{
 		auto it = m_NameJointMap.find(str);
 		if (it == m_NameJointMap.end())
@@ -17,23 +19,21 @@ namespace lion
 		return it->second;
 	}
 
-	void AnimPoseClip::AddTrack(const JointTrack& track)
+	void AnimClip::AddTrack(const JointTrack& track)
 	{
 		auto it = m_NameJointMap.find(track.m_Name);
-		if (it != m_NameJointMap.end())
-		{
-			*(int*)nullptr;
-		}
+		assert(it == m_NameJointMap.end());
 
-		int idx = m_Tracks.size();
+		size_t idx = m_Tracks.size();
 		m_NameJointMap[track.m_Name] = idx;
 		m_Tracks.push_back(track);
 		m_Tracks.back().m_Id = idx;
 	}
 
-	void AnimPoseClip::Sample(float time, AnimPose& outPose, float& outTime) const
+	void AnimClip::Sample(float time, AnimPose& outPose, float& outTime, bool loop) const
 	{
-		float adjustedTime = GetAdjustedTime(time);
+		OPTICK_EVENT();
+		float adjustedTime = GetAdjustedTime(time, loop);
 		outTime = adjustedTime;
 		// assert pose are the same
 
@@ -70,12 +70,12 @@ namespace lion
 		}
 	}
 
-	float AnimPoseClip::GetAdjustedTime(float time) const
+	float AnimClip::GetAdjustedTime(float time, bool loop) const
 	{
 		// we dont do rewinds
-		if (time < 0.0f)
+		if (time < m_StartTime)
 		{
-			return 0.0f;
+			return m_StartTime;
 		}
 
 		if (time <= m_EndTime)
@@ -83,7 +83,7 @@ namespace lion
 			return time;
 		}
 
-		if (!m_Loop)
+		if (!loop)
 		{
 			return m_EndTime;
 		}

@@ -8,6 +8,8 @@
 namespace lpd
 {
 	class iDisplay;
+	class MeshGroup;
+	class Shape;
 
 	class GLGraphicsSystem : public iGraphicsSystem
 	{
@@ -19,6 +21,9 @@ namespace lpd
 		void SetDisplay(iDisplay* value) override;
 		iDisplay* GetDisplay() override;
 		GraphicsComponent* CreateGraphicsComponent() override;
+		CameraComponent* CreateCameraComponent() override;
+		MeshGroup* LoadMesh(const std::string& path) override;
+		SkeletalMesh* CreateSkeletalMesh() override;
 
 	private:
 		void ClearScreen();
@@ -29,6 +34,11 @@ namespace lpd
 
 		iDisplay* m_Display;
 
+		CameraComponent* m_ActiveCamera;
+
 		std::vector<GraphicsComponent*> m_GraphicsComponents;
+		std::vector<CameraComponent*> m_CameraComponents;
+		std::vector<Shape*> m_Shapes;
+		std::vector<SkeletalMesh*> m_SkeletalMeshes;
 	};
 }

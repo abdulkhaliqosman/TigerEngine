@@ -13,7 +13,7 @@ namespace jgr
 		inline void SetTransform(TransformComponent* transform) { m_Transform = transform; }
 		inline TransformComponent* GetTransform() { return m_Transform; }
 
-		JAGUAR_DLL void AddComponent(Component* component);
+		void AddComponent(Component* component);
 
 		template<typename T>
 		T* GetComponent();

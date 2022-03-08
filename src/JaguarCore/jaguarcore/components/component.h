@@ -7,9 +7,9 @@ namespace jgr
 	class Component
 	{
 	public:
-		JAGUAR_DLL virtual void Startup();
-		JAGUAR_DLL virtual void Update();
-		JAGUAR_DLL virtual void Shutdown();
+		virtual void Startup();
+		virtual void Update();
+		virtual void Shutdown();
 
 		GameObject* GetGameObject() const { return m_GameObject; }
 		void SetGameObject(GameObject* gameObject) { m_GameObject = gameObject; }

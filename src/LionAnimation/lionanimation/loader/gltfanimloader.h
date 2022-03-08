@@ -7,7 +7,7 @@ struct cgltf_data;
 
 namespace lion
 {
-	class AnimPoseClip;
+	class AnimClip;
 	class AnimPose;
 
 	class GLTFAnimLoader
@@ -18,10 +18,11 @@ namespace lion
 		void LoadFile(const std::string& path);
 		void UnloadFile();
 
-		std::vector<AnimPoseClip*> LoadAnimClips() const;
-		AnimPose* LoadPose() const;
+		std::vector<AnimClip*> LoadAnimClips() const;
+		std::vector<AnimPose*> LoadPoses() const;
 
 	private:
 		cgltf_data* m_Data = nullptr;
+		std::string m_Path;
 	};
 }

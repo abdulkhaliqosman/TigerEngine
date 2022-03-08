@@ -36,9 +36,6 @@
     <ClCompile Include="tigerengine\input\input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tigerengine\componentfactory\componentfactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tigerengine\gameobjectfactory\gameobjectfactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -69,9 +66,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tigerengine\input\input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="tigerengine\componentfactory\componentfactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tigerengine\gameobjectfactory\gameobjectfactory.h">

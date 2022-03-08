@@ -7,9 +7,9 @@ namespace jgr
 	class TransformComponent : public Component
 	{
 	public:
-		JAGUAR_DLL void Startup() override;
-		JAGUAR_DLL void Update() override;
-		JAGUAR_DLL void Shutdown() override;
+		void Startup() override;
+		void Update() override;
+		void Shutdown() override;
 
 		inline const vec3& GetPosition() { return m_Position; }
 		inline const quat& GetRotation() { return m_Rotation; }

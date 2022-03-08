@@ -27,26 +27,26 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -90,13 +90,13 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>leopardgraphics/leopardpch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)submodules\extern;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)submodules\extern;$(SolutionDir)submodules\Optick\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)LionAnimation.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)Submodules.lib;$(OutDir)LionAnimation.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -109,7 +109,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>leopardgraphics/leopardpch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)submodules\extern;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)submodules\extern;$(SolutionDir)submodules\Optick\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -117,7 +117,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)Extern.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)Submodules.lib;$(OutDir)Extern.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -128,14 +128,17 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>leopardgraphics/leopardpch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)submodules\extern;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)submodules\extern;$(SolutionDir)submodules\Optick\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)Extern.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)Submodules.lib;$(OutDir)Extern.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <Lib>
+      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)Submodules.lib;</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -147,7 +150,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>leopardgraphics/leopardpch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)submodules\extern;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)submodules\extern;$(SolutionDir)submodules\Optick\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -155,11 +158,10 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)Extern.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)Submodules.lib;$(OutDir)Extern.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="leopardgraphics\component\animatorcomponent.h" />
     <ClInclude Include="leopardgraphics\component\graphicscomponent.h" />
     <ClInclude Include="leopardgraphics\display\idisplay.h" />
     <ClInclude Include="leopardgraphics\graphics\glgraphics\attribute.h" />
@@ -179,10 +181,10 @@
     <ClInclude Include="leopardgraphics\shapes\cube.h" />
     <ClInclude Include="leopardgraphics\shapes\mesh.h" />
     <ClInclude Include="leopardgraphics\shapes\shape.h" />
+    <ClInclude Include="leopardgraphics\shapes\skeletalmesh.h" />
     <ClInclude Include="leopardgraphics\shapes\staticshape.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="leopardgraphics\component\animatorcomponent.cpp" />
     <ClCompile Include="leopardgraphics\component\graphicscomponent.cpp" />
     <ClCompile Include="leopardgraphics\dllmain.cpp" />
     <ClCompile Include="leopardgraphics\graphics\glgraphics\attribute.cpp" />
@@ -205,6 +207,7 @@
     <ClCompile Include="leopardgraphics\shapes\cube.cpp" />
     <ClCompile Include="leopardgraphics\shapes\mesh.cpp" />
     <ClCompile Include="leopardgraphics\shapes\shape.cpp" />
+    <ClCompile Include="leopardgraphics\shapes\skeletalmesh.cpp" />
     <ClCompile Include="leopardgraphics\shapes\staticshape.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

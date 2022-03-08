@@ -30,6 +30,12 @@
     <ClInclude Include="lionanimation\animation\animpose.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="lionanimation\system\animationsystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lionanimation\component\animationcomponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lionanimation\dllmain.cpp">
@@ -45,6 +51,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="lionanimation\animation\animpose.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lionanimation\system\animationsystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lionanimation\component\animationcomponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

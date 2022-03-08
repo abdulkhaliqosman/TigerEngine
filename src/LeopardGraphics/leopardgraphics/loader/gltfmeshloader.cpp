@@ -46,7 +46,7 @@ namespace lpd
 	MeshGroup* GLTFMeshLoader::LoadMesh(const std::string& path) const
 	{
 		cgltf_data* gltf = LoadGLTFFile(path.c_str());
-		MeshGroup* meshGroup = new MeshGroup;
+		MeshGroup* meshGroup = jgr::New<MeshGroup>();
 
 		auto* nodes = gltf->nodes;
 		auto nodes_count = gltf->nodes_count;
@@ -64,7 +64,7 @@ namespace lpd
 				std::cout << "primitives_count: " << primitives_count << std::endl;
 				for (int j = 0; j < primitives_count; ++j)
 				{
-					Mesh* mesh = new Mesh;
+					Mesh* mesh = jgr::New<Mesh>();
 					meshGroup->m_Meshes.push_back(mesh);
 
 					const cgltf_primitive& primitive = gltf_mesh->primitives[j];
@@ -153,110 +153,3 @@ namespace lpd
 		return meshGroup;
 	}
 }
-
-//
-//Pose* GLTFMeshLoader::LoadSkeleton(const std::string& path) const
-//{
-//	cgltf_data* gltf = LoadGLTFFile(path.c_str());
-//
-//	// assume 1 skin only
-//
-//	if (gltf->skins_count == 0)
-//	{
-//		return nullptr;
-//	}
-//
-//	Pose* skeleton = new Pose;
-//
-//	const cgltf_skin& skin = gltf->skins[0];
-//	for (int i = 0; i < skin.joints_count; ++i)
-//	{
-//		const cgltf_node* cgltfJoint = skin.joints[i];
-//		Joint joint;
-//		joint.m_Id = i;
-//		joint.m_Name = cgltfJoint->name;
-//
-//		const cgltf_accessor* accessor = skin.inverse_bind_matrices;
-//		float mat[16];
-//
-//		cgltf_accessor_read_float(accessor, i, mat, 16);
-//
-//		joint.m_InverseBindMatrices = mat4(mat);
-//
-//		if (cgltfJoint->has_translation)
-//		{
-//			auto translate = vec3(cgltfJoint->translation);
-//			joint.localTransform.SetTranslate(translate);
-//		}
-//
-//		if (cgltfJoint->has_rotation)
-//		{
-//			auto rotate = quat(cgltfJoint->rotation);
-//			joint.localTransform.SetRotate(rotate);
-//		}
-//
-//		if (cgltfJoint->has_scale)
-//		{
-//			auto scale = vec3(cgltfJoint->scale);
-//			joint.localTransform.SetScale(scale);
-//		}
-//
-//		skeleton->AddJoint(joint);
-//	}
-//
-//	for (int j = 0; j < gltf->nodes_count; ++j)
-//	{
-//		const cgltf_node& cgltfJoint = gltf->nodes[j];
-//		int idx = skeleton->GetIndex(cgltfJoint.name);
-//
-//		if (idx == Joint::INVALID_ID)
-//		{
-//			Joint joint;
-//			joint.m_Id = skeleton->Size();
-//			joint.m_Name = cgltfJoint.name;
-//
-//			if (cgltfJoint.has_translation)
-//			{
-//				auto translate = vec3(cgltfJoint.translation);
-//				joint.localTransform.SetTranslate(translate);
-//			}
-//
-//			if (cgltfJoint.has_rotation)
-//			{
-//				auto rotate = quat(cgltfJoint.rotation);
-//				joint.localTransform.SetRotate(rotate);
-//			}
-//
-//			if (cgltfJoint.has_scale)
-//			{
-//				auto scale = vec3(cgltfJoint.scale);
-//				joint.localTransform.SetScale(scale);
-//			}
-//
-//			skeleton->AddJoint(joint);
-//		}
-//
-//		
-//	}
-//
-//	for (int j = 0; j < skin.joints_count; ++j)
-//	{
-//		const cgltf_node* cgltfJoint = skin.joints[j];
-//		const cgltf_node* parent = cgltfJoint->parent;
-//		if (parent != nullptr)
-//		{
-//			int idx = skeleton->GetIndex(cgltfJoint->name);
-//			int parentIdx = skeleton->GetIndex(parent->name);
-//			if (idx != Joint::INVALID_ID && parentIdx != Joint::INVALID_ID)
-//			{
-//				Joint& parentJoint = skeleton->GetJoint(parentIdx);
-//				Joint& joint = skeleton->GetJoint(idx);
-//
-//				joint.m_ParentId = parentIdx;
-//				parentJoint.m_ChildrenId.push_back(idx);
-//			}
-//		}
-//	}
-//
-//	return skeleton;
-//}

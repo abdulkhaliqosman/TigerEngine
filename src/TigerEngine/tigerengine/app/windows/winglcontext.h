@@ -1,6 +1,9 @@
 #pragma once
 #include "leopardgraphics/display/idisplay.h"
 
+#include <glad/glad.h>
+#include <gl/wglext.h>
+
 namespace tgr
 {
 	class WinGLContext
@@ -26,6 +29,7 @@ namespace tgr
 		bool m_EnableVSync = false;
 
 		HWND m_HWND;
+		HDC m_HDC;
 	};
 
 }
