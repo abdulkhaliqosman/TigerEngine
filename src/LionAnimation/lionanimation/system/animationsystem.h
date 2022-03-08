@@ -29,6 +29,7 @@ namespace lion
 		AnimationComponent* CreateAnimationComponent();
 		const AnimClip* LoadClip(const std::string& path);
 		AnimPose* LoadPose(const std::string& path);
+		AnimPose* ClonePose(const std::string& path);
 
 		inline void SetJobSystem(jgr::JobSystem* jobSystem) { m_JobSystem = jobSystem; }
 

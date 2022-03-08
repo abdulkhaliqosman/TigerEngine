@@ -83,9 +83,24 @@ namespace lion
 		GLTFAnimLoader loader;
 		loader.LoadFile(path);
 		std::vector<AnimPose*> poses = loader.LoadPoses();
-
 		m_AnimPoses.insert(m_AnimPoses.end(), poses.begin(), poses.end());
 
 		return poses[0];
+	}
+
+	AnimPose* AnimationSystem::ClonePose(const std::string& path)
+	{
+		for (auto* pose : m_AnimPoses)
+		{
+			if (pose->GetPath() == path)
+			{
+				AnimPose* result = jgr::New<AnimPose>(*pose);
+
+				m_AnimPoses.push_back(result);
+				return result;
+			}
+		}
+
+		return LoadPose(path);
 	}
 }

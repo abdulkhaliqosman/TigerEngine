@@ -21,14 +21,14 @@ namespace tgr
 		auto* transform = engine->GetScene()->CreateTransformComponent(go);
 		
 		transform->SetPosition(pos);
-		transform->SetScale(vec3(0.2f, 0.2f, 0.2f));
+		transform->SetScale(vec3(0.1f, 0.1f, 0.1f));
 		transform->SetRotation(quat::FromEulerAngles(jgr::EulerAngles{ 0.0f, 180.0f, 0.0f }));
 
 		auto* anim = engine->GetAnimation()->CreateAnimationComponent();
 
 		// TODO: reuse same meshes
 		auto* animClip = engine->GetAnimation()->LoadClip("./assets/animations/jumpanim.glb");
-		auto* animPose = engine->GetAnimation()->LoadPose("./assets/meshes/testmesh.glb");
+		auto* animPose = engine->GetAnimation()->ClonePose("./assets/meshes/testmesh.glb");
 		
 		anim->SetClip(animClip);
 		anim->SetPose(animPose);
@@ -61,7 +61,7 @@ namespace tgr
 		{
 			for (int j = 0; j < 30; ++j)
 			{
-				CreateCharacter(vec3(i * 0.05f - 1.0f, j * 0.05f - 1.0f, 0.2f), m_Engine, i * 0.01f + j * 0.1f);
+				CreateCharacter(vec3(i * 0.06f - 0.9f, j * 0.05f - 0.9f, 0.2f), m_Engine, i * 0.01f + j * 0.1f);
 			}
 		}
 		

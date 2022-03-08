@@ -164,7 +164,6 @@
     <ClCompile Include="Optick\src\optick_core.cpp" />
     <ClCompile Include="Optick\src\optick_gpu.cpp" />
     <ClCompile Include="Optick\src\optick_gpu.d3d12.cpp" />
-    <ClCompile Include="Optick\src\optick_gpu.vulkan.cpp" />
     <ClCompile Include="Optick\src\optick_message.cpp" />
     <ClCompile Include="Optick\src\optick_miniz.cpp" />
     <ClCompile Include="Optick\src\optick_serialization.cpp" />

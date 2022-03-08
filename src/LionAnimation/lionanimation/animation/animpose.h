@@ -48,12 +48,14 @@ namespace lion
 
 		const std::vector<mat4>& GetJointTransforms() const { return m_JointTransforms; }
 
+		inline const std::string& GetPath() const { return m_Path; }
+		inline void SetPath(const std::string& path) { m_Path = path; }
 	private:
 		mat4 ComputeTransform(int id);
+
+		std::string m_Path;
 		std::vector<Joint> m_Joints;
-
 		std::vector<mat4> m_JointTransforms;
-
 		JointIndexMap m_NameJointMap;
 	};
 }

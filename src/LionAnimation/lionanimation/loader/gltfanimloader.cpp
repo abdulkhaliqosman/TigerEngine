@@ -291,7 +291,9 @@ namespace lion
 		for (int i = 0; i < m_Data->skins_count; ++i)
 		{
 			const cgltf_skin& skin = m_Data->skins[i];
-			result.push_back(gltfloader::LoadPose(skin, m_Data));
+			auto* pose = gltfloader::LoadPose(skin, m_Data);
+			pose->SetPath(m_Path);
+			result.push_back(pose);
 		}
 
 		return result;
