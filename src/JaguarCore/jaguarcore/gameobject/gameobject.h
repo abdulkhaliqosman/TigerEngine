@@ -5,7 +5,7 @@
 namespace jgr
 {
 	class Component;
-	class Scene;
+	class iScene;
 
 	class GameObject
 	{
@@ -17,12 +17,13 @@ namespace jgr
 
 		template<typename T>
 		T* GetComponent();
-		inline Scene* GetOwner() { return m_Owner; }
-		inline void GetOwner(Scene* value) { m_Owner = value; }
+		inline iScene* GetScene() { return m_Scene; }
+		inline void SetScene(iScene* value) { m_Scene = value; }
+
 	private:
 		std::vector<Component*> m_Components;
 		TransformComponent* m_Transform;
-		Scene* m_Owner;
+		iScene* m_Scene;
 	};
 
 	template<typename T>

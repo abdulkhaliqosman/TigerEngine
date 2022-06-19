@@ -1,5 +1,6 @@
 #include <jaguarcore/jaguarpch.h>
 #include "component.h"
+#include "jaguarcore/gameobject/gameobject.h"
 
 namespace jgr
 {
@@ -16,5 +17,10 @@ namespace jgr
 	void Component::Shutdown()
 	{
 
+	}
+
+	TransformComponent* Component::GetTransform() 
+	{ 
+		return m_GameObject->GetTransform(); 
 	}
 }

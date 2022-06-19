@@ -21,11 +21,8 @@ namespace lpd
 
 	void GLGraphicsSystem::Startup()
 	{
-		GLTFMeshLoader meshLoader;
-
 		m_VertexArray.Load(1);
 		m_Shader.Load("./assets/shaders/static.vert", "./assets/shaders/lit.frag");
-
 
 		m_VertexArray.Bind(0);
 		m_Cube.Set();
@@ -41,8 +38,6 @@ namespace lpd
 
 
 		m_VertexArray.Unbind();
-
-
 	}
 
 	void GLGraphicsSystem::Update()
@@ -69,13 +64,21 @@ namespace lpd
 		mat4 view = mat4::Identity();
 		mat4 projection = mat4::Identity();
 
+		for (CameraComponent* cc : m_CameraComponents)
+		{
+			cc->Update();
+		}
+
 		if (m_ActiveCamera)
 		{
 			projection = m_ActiveCamera->GetProjectionMatrix();
-			view = m_ActiveCamera->GetGameObject()->GetTransform()->GetGlobalTransform();
+			view = m_ActiveCamera->GetGameObject()->GetTransform()->GetGlobalTransform().Inverse();
 		}
 
 		// TODO: sort by shape
+		Uniform<mat4>::Set(m_Shader.GetUniform("view"), view);
+		Uniform<mat4>::Set(m_Shader.GetUniform("projection"), projection);
+		Uniform<vec3>::Set(m_Shader.GetUniform("lightPos"), m_ActiveCamera->GetGameObject()->GetTransform()->GetLocalPosition());
 		
 
 		for (GraphicsComponent* gc : m_GraphicsComponents)
@@ -85,8 +88,6 @@ namespace lpd
 
 		m_Cube.GetPosAttrib().BindTo(m_Shader.GetAttribute("position"));
 		Uniform<mat4>::Set(m_Shader.GetUniform("model"), transform);
-		Uniform<mat4>::Set(m_Shader.GetUniform("view"), view);
-		Uniform<mat4>::Set(m_Shader.GetUniform("projection"), projection);
 		Draw(m_Cube.GetElementBuffer(), DrawMode::Triangles);
 
 		m_VertexArray.Unbind();

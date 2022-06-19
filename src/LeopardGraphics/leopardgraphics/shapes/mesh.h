@@ -25,7 +25,7 @@ namespace lpd
 
 		void Render(Shader& shader) override;
 
-		std::vector<vec3> m_Position;
+		std::vector<vec3> m_LocalPosition;
 		std::vector<vec3> m_Normal;
 		
 		std::vector<ivec4> m_Joints;

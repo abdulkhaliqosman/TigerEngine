@@ -22,6 +22,8 @@ namespace lion
 	{
 	public:
 		void Sample(float time, AnimPose& outPose, float& outTime, bool loop) const;
+		void Sample(float adjustedTime, AnimPose& outPose, const JointTrack& jointTrack) const;
+
 		float GetAdjustedTime(float time, bool loop) const;
 
 		int GetIndex(const std::string& id) const;

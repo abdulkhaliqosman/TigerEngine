@@ -32,6 +32,9 @@ void main()
 				+ weights.z * jointTransform[joints.z]
 				+ weights.w * jointTransform[joints.w];
 
+		fragPosition = vec3(model * skin * vec4(position, 1.0));
+		fragNormal = vec3(model * skin * vec4(normal, 0.0f));
+
 		gl_Position = projection * view * model * skin * vec4(position, 1.0);
 	}
 	else

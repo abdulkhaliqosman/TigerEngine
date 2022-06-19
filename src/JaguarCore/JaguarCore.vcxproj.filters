@@ -93,6 +93,15 @@
     <ClInclude Include="jaguarcore\thread\jobqueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="jaguarcore\object\ObjectVisitor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jaguarcore\imgui\imguipage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jaguarcore\engine\iengine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jaguarcore\dllmain.cpp">
@@ -102,9 +111,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="jaguarcore\log\log.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="jaguarcore\components\transformcomponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="jaguarcore\components\component.cpp">
@@ -123,6 +129,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="jaguarcore\thread\jobqueue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="jaguarcore\components\transformcomponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

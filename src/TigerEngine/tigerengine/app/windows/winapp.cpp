@@ -6,7 +6,9 @@
 
 #include <tigerengine/app/windows/winglcontext.h>
 #include <tigerengine/imgui/windows/winimguiwrapper.h>
-#include "optick.h"
+#include <optick.h>
+
+#include <wolfnetworking/windows/winnetworksystem.h>
 
 namespace tgr
 {
@@ -33,7 +35,7 @@ namespace tgr
 			m_WinGLContext.MakeWindow(m_hInstance, m_szCmdLine);
 			m_WinGLContext.CreateContext();
 
-			
+			m_WinInput.RegisterRawInputDevices(m_WinGLContext.GetHWND());
 
 			auto* gfx = lpd::iGraphicsSystem::CreateGraphicsSystem();
 			gfx->SetDisplay(this);
@@ -43,6 +45,8 @@ namespace tgr
 			auto imgui = jgr::New <WinImGuiWrapper>();
 			engine.SetImGuiWrapper(imgui);
 			imgui->SetContext(&m_WinGLContext);
+
+			engine.SetNetwork(jgr::New<wolf::WinNetworkSystem>(engine));
 
 			engine.Startup();
 

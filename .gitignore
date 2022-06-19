@@ -44,6 +44,7 @@ src/LionAnimation/x64/Release
 src/TigerEngine/Debug
 src/TigerEngine/x64/Debug
 src/TigerEngine/x64/Release
+src/WolfNetworking/x64/
 submodules/Extern/Debug
 submodules/Extern/x64/Debug
 submodules/Extern/x64/Release

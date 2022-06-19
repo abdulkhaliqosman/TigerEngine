@@ -9,7 +9,7 @@ namespace lpd
 {
 	void Mesh::Set()
 	{
-		m_PosAttrib.Set(m_Position);
+		m_PosAttrib.Set(m_LocalPosition);
 		m_NormalAttrib.Set(m_Normal);
 		m_ElementBuffer.Set(m_Indices);
 

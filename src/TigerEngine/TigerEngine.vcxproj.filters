@@ -33,19 +33,37 @@
     <ClCompile Include="tigerengine\scene\scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tigerengine\input\input.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tigerengine\gameobjectfactory\gameobjectfactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tigerengine\input\windows\wininput.cpp">
+    <ClCompile Include="tigerengine\app\windows\wininput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tigerengine\imgui\imguiwrapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tigerengine\imgui\windows\winimguiwrapper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tigerengine\agents\agentcomponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tigerengine\agents\agentmanager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tigerengine\gameplay\cameramovementcomponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tigerengine\gamenetwork\gamenetworksystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tigerengine\gamenetwork\gamenetmsg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tigerengine\gameplay\playeractorcomponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tigerengine\gamenetwork\gamenetworkserver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,19 +83,43 @@
     <ClInclude Include="tigerengine\scene\scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="tigerengine\input\input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="tigerengine\gameobjectfactory\gameobjectfactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="tigerengine\input\windows\wininput.h">
+    <ClInclude Include="tigerengine\app\windows\wininput.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tigerengine\imgui\imguiwrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tigerengine\imgui\windows\winimguiwrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tigerengine\agents\agentcomponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tigerengine\agents\agentmanager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tigerengine\gameplay\cameramovementcomponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tigerengine\scene\iscenesystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tigerengine\gamenetwork\gamenetworksystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tigerengine\gamenetwork\gamenetmsg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tigerengine\gameplay\playeractorcomponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tigerengine\gamenetwork\gamenetworkserver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tigerengine\gamenetwork\gamenetcomponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -34,8 +34,6 @@ namespace lpd
 
 		iDisplay* m_Display;
 
-		CameraComponent* m_ActiveCamera;
-
 		std::vector<GraphicsComponent*> m_GraphicsComponents;
 		std::vector<CameraComponent*> m_CameraComponents;
 		std::vector<Shape*> m_Shapes;

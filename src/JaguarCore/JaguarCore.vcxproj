@@ -163,8 +163,10 @@
     <ClInclude Include="jaguarcore\components\component.h" />
     <ClInclude Include="jaguarcore\components\componentcontainer.h" />
     <ClInclude Include="jaguarcore\components\transformcomponent.h" />
+    <ClInclude Include="jaguarcore\engine\iengine.h" />
     <ClInclude Include="jaguarcore\filetypes\gltf\gltfloader.h" />
     <ClInclude Include="jaguarcore\gameobject\gameobject.h" />
+    <ClInclude Include="jaguarcore\imgui\imguipage.h" />
     <ClInclude Include="jaguarcore\input\iinput.h" />
     <ClInclude Include="jaguarcore\jaguarexport.h" />
     <ClInclude Include="jaguarcore\jaguarpch.h" />
@@ -178,6 +180,7 @@
     <ClInclude Include="jaguarcore\math\transform.h" />
     <ClInclude Include="jaguarcore\math\vector.h" />
     <ClInclude Include="jaguarcore\memory\memory.h" />
+    <ClInclude Include="jaguarcore\object\ObjectVisitor.h" />
     <ClInclude Include="jaguarcore\scene\iscene.h" />
     <ClInclude Include="jaguarcore\system\isystem.h" />
     <ClInclude Include="jaguarcore\thread\jobqueue.h" />

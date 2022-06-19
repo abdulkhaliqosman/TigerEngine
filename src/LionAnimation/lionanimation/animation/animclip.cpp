@@ -41,31 +41,34 @@ namespace lion
 
 		for (int i = 0; i < size; ++i)
 		{
-			const JointTrack& jointTrack = m_Tracks[i];
-			int jointId = outPose.GetIndex(jointTrack.m_Name);
+			Sample(adjustedTime, outPose, m_Tracks[i]);
+		}
+	}
 
+	void AnimClip::Sample(float adjustedTime, AnimPose& outPose, const JointTrack& jointTrack) const
+	{
+		int jointId = outPose.GetIndex(jointTrack.m_Name);
 
-			if (jointId != Joint::INVALID_ID)
+		if (jointId != Joint::INVALID_ID)
+		{
+			Joint& joint = outPose.GetJoint(jointId);
+			const AnimTransformTrack& track = jointTrack.m_TransformTrack;
+			if (!track.positionTrack.Empty())
 			{
-				Joint& joint = outPose.GetJoint(jointId);
-				const AnimTransformTrack& track = jointTrack.m_TransformTrack;
-				if (!track.positionTrack.Empty())
-				{
-					vec3 pos = track.positionTrack.GetValue(adjustedTime);
-					joint.position = pos;
-				}
+				vec3 pos = track.positionTrack.GetValue(adjustedTime);
+				joint.position = pos;
+			}
 
-				if (!track.rotationTrack.Empty())
-				{
-					quat rot = track.rotationTrack.GetValue(adjustedTime);
-					joint.rotation = rot;
-				}
+			if (!track.rotationTrack.Empty())
+			{
+				quat rot = track.rotationTrack.GetValue(adjustedTime);
+				joint.rotation = rot;
+			}
 
-				if (!track.scaleTrack.Empty())
-				{
-					vec3 scale = track.scaleTrack.GetValue(adjustedTime);
-					joint.scale = scale;
-				}
+			if (!track.scaleTrack.Empty())
+			{
+				vec3 scale = track.scaleTrack.GetValue(adjustedTime);
+				joint.scale = scale;
 			}
 		}
 	}

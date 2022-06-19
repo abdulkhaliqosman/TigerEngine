@@ -243,7 +243,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 	// }
 	break;
 	case WM_INPUT:
-
+		tgr::WinApp::GetInput().ProcessInput(lParam);
 		break;
 		// 4. ignore others
 	// case WM_PAINT:

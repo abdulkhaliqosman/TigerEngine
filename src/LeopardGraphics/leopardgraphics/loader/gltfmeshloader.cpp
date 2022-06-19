@@ -96,7 +96,7 @@ namespace lpd
 									vec3 vec;
 									cgltf_accessor_read_float(accessor, v, &vec[0], 3);
 
-									mesh->m_Position.push_back(vec);
+									mesh->m_LocalPosition.push_back(vec);
 								}
 							}
 						}

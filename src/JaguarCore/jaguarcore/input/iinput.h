@@ -6,5 +6,6 @@ namespace jgr
 {
 	class iInput : public iSystem
 	{
+
 	};
 }

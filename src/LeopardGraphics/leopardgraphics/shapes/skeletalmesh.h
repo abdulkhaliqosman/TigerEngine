@@ -19,6 +19,6 @@ namespace lpd
 	private:
 		Mesh* m_Mesh;
 
-		const lion::AnimPose* m_Pose;
+		const lion::AnimPose* m_Pose = nullptr;
 	};
 }

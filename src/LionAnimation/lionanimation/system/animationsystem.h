@@ -19,7 +19,7 @@ namespace lion
 		void Execute() override;
 	};
 
-	class AnimationSystem : public jgr::iSystem
+	class AnimationSystem : public iSystem
 	{
 	public:
 		void Startup() override;

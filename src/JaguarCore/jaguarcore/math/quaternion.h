@@ -11,11 +11,11 @@ namespace jgr
 		float roll = 0.0f;
 	};
 
-	template<typename T>
-	class Quaternion : public Vector<T, 4>
+	template<typename T, unsigned U>
+	class Quaternion : public Vector<T, 4, U>
 	{
 	public:
-		using BaseType = Vector<T, 4>;
+		using BaseType = Vector<T, 4, U>;
 
 		template<typename ... Args>
 		explicit Quaternion(Args&& ... args) :BaseType(std::forward<Args>(args)...) {}
@@ -48,12 +48,12 @@ namespace jgr
 
 	};
 
-	using quat = Quaternion<float>;
+	using quat = Quaternion<float, 16>;
 	
-	template<typename T>
-	Quaternion<T> operator*(const Quaternion<T>& lhs, const Quaternion<T>& rhs)
+	template<typename T, unsigned U>
+	Quaternion<T, U> operator*(const Quaternion<T, U>& lhs, const Quaternion<T, U>& rhs)
 	{
-		return Quaternion<T>{
+		return Quaternion<T, U>{
 			lhs.w() * rhs.x() + lhs.x() * rhs.w() + lhs.y() * rhs.z() - lhs.z() * rhs.y(),
 			lhs.w() * rhs.y() + lhs.y() * rhs.w() + lhs.z() * rhs.x() - lhs.x() * rhs.z(),
 			lhs.w() * rhs.z() + lhs.z() * rhs.w() + lhs.x() * rhs.y() - lhs.y() * rhs.x(),
@@ -61,32 +61,32 @@ namespace jgr
 		};
 	}
 
-	template<typename T>
-	Vector<T, 4> operator*(const Quaternion<T>& q, const Vector<T, 4>& v)
+	template<typename T, unsigned U>
+	Vector<T, 4, U> operator*(const Quaternion<T, U>& q, const Vector<T, 4, U>& v)
 	{
-		Quaternion<T> vq{ v.x(), v.y(), v.z() };
+		Quaternion<T, U> vq{ v.x(), v.y(), v.z() };
 
-		Quaternion<T> result = q * vq * q.Conjugate();
+		Quaternion<T, U> result = q * vq * q.Conjugate();
 
-		return Vector<T, 4>(result.x(), result.y(), result.z());
+		return Vector<T, 4, U>(result.x(), result.y(), result.z());
 	}
 
-	template<typename T>
-	Quaternion<T> operator+(const Quaternion<T>& lhs, const Quaternion<T>& rhs)
+	template<typename T, unsigned U>
+	Quaternion<T, U> operator+(const Quaternion<T, U>& lhs, const Quaternion<T, U>& rhs)
 	{
-		return Quaternion<T>(vec4(lhs.Data()) + Vector<T, 4>(rhs.Data()));
+		return Quaternion<T, U>(Vector<T, 4, U>(lhs.Data()) + Vector<T, 4, U>(rhs.Data()));
 	}
 
-	template<typename T>
-	Quaternion<T> operator*(float f, const Quaternion<T>& rhs)
+	template<typename T, unsigned U>
+	Quaternion<T, U> operator*(float f, const Quaternion<T, U>& rhs)
 	{
-		return Quaternion<T>(f * Vector<T, 4>(rhs.Data()));
+		return Quaternion<T, U>(f * Vector<T, 4, U>(rhs.Data()));
 	}
 
-	template<typename T>
-	Quaternion<T> operator-(const Quaternion<T>& q)
+	template<typename T, unsigned U>
+	Quaternion<T, U> operator-(const Quaternion<T, U>& q)
 	{
-		return Quaternion<T>(-Vector<T, 4>(q.Data()));
+		return Quaternion<T, U>(-Vector<T, 4, U>(q.Data()));
 	}
 
 }

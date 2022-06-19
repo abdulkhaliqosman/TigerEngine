@@ -5,6 +5,7 @@
 
 #include <windows.h>
 #include <tigerengine/app/windows/winglcontext.h>
+#include <tigerengine/app/windows/wininput.h>
 
 namespace tgr
 {
@@ -23,6 +24,7 @@ namespace tgr
 		void SwapBuffers() override;
 		
 		inline static WinApp* GetInstance() { return ms_Instance; }
+		inline static WinInput& GetInput() { return GetInstance()->m_WinInput; } // TODO: Maybe make this generic
 
 	private:
 		HINSTANCE m_hInstance;
@@ -33,7 +35,7 @@ namespace tgr
 		bool m_IsRunning = false;
 
 		WinGLContext m_WinGLContext;
-
+		WinInput m_WinInput;
 		static WinApp* ms_Instance;
 	};
 }
