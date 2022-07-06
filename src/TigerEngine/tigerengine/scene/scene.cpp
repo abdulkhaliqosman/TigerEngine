@@ -22,6 +22,9 @@ namespace tgr
 {
 	static void InitPlayerActorComponent(Engine* engine, PlayerActorComponent& pac)
 	{
+		static int id = 0;
+		pac.SetUserId(++id); // set user id to 1 ++, 0 is server (we assume headed but non-player server)
+
 		std::function<void(const MovePlayerNetMsg&)> func
 			= [&pac](const MovePlayerNetMsg& msg)
 		{
@@ -68,6 +71,7 @@ namespace tgr
 
 		auto* actor = scene->CreateGenericComponent<PlayerActorComponent>(go);
 		actor->SetGameNetwork(engine->GetGameNetwork());
+		actor->SetNetwork(engine->GetNetwork());
 		InitPlayerActorComponent(engine, *actor);
 
 		return go;
@@ -79,7 +83,6 @@ namespace tgr
 		auto* transform = engine->GetScene()->CreateTransformComponent(go);
 
 		transform->SetLocalPosition(vec3(0.0f, 0.0f, 5.0f));
-		transform->SetLocalRotation(quat::FromEulerAngles(jgr::EulerAngles{ 30.0f, 0.0f, 0.0f }));
 
 		auto* cc = engine->GetGraphics()->CreateCameraComponent();
 		go->AddComponent(cc);

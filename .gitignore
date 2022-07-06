@@ -52,3 +52,5 @@ x64/Debug
 x64/Release
 submodules/x64/Debug
 submodules/x64/Release
+submodules/Bullet3/
+submodules/OpenCL-Headers/

@@ -4,3 +4,9 @@
 [submodule "submodules/Optick"]
 	path = submodules/Optick
 	url = https://github.com/bombomby/optick.git
+[submodule "submodules/Bullet3"]
+	path = submodules/Bullet3
+	url = https://github.com/bulletphysics/bullet3.git
+[submodule "submodules/OpenCL-Headers"]
+	path = submodules/OpenCL-Headers
+	url = https://github.com/KhronosGroup/OpenCL-Headers.git

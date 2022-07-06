@@ -14,7 +14,10 @@ namespace tgr
 {
 	void CameraMovementComponent::Startup()
 	{
-		
+		auto* transform = GetTransform();
+		SetRotation(jgr::EulerAngles{ 30.0f, 0.0f, 0.0f });
+
+		transform->SetLocalRotation(quat::FromEulerAngles(m_Rotation));
 	}
 
 	void CameraMovementComponent::Update()
@@ -24,12 +27,12 @@ namespace tgr
 
 		if (WinApp::GetInput().GetKeyDown('W'))
 		{
-			transform->SetLocalPosition(localPos + transform->Forward() / 60.0f);
+			transform->SetLocalPosition(localPos + transform->Back() / 60.0f);
 		}
 
 		if (WinApp::GetInput().GetKeyDown('S'))
 		{
-			transform->SetLocalPosition(localPos + transform->Back() / 60.0f);
+			transform->SetLocalPosition(localPos + transform->Forward() / 60.0f);
 		}
 
 		if (WinApp::GetInput().GetKeyDown('A'))
@@ -40,6 +43,16 @@ namespace tgr
 		if (WinApp::GetInput().GetKeyDown('D'))
 		{
 			transform->SetLocalPosition(localPos + transform->Right() / 60.0f);
+		}
+
+		if (WinApp::GetInput().GetKeyDown('R'))
+		{
+			transform->SetLocalPosition(localPos + transform->Up() / 60.0f);
+		}
+
+		if (WinApp::GetInput().GetKeyDown('F'))
+		{
+			transform->SetLocalPosition(localPos + transform->Down() / 60.0f);
 		}
 
 		if (WinApp::GetInput().GetKeyDown(VK_UP))

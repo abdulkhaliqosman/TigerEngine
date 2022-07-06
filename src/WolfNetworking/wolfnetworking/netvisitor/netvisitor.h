@@ -61,7 +61,7 @@ void NetMsgReadVisitor::Read(T& dest) const
 {
 	for (int i = 0; i < sizeof(T); ++i)
 	{
-		T val = ReadChar();
+		unsigned long long val = (unsigned char) ReadChar();
 		dest |= val << (i * BYTE_BIT_LENGTH);
 	}
 }
@@ -69,7 +69,7 @@ void NetMsgReadVisitor::Read(T& dest) const
 template<>
 inline void NetMsgReadVisitor::Read(float& val) const
 {
-	NetMsgReadVisitor::Read<int>(reinterpret_cast<int&>(val));
+	NetMsgReadVisitor::Read<unsigned int>(reinterpret_cast<unsigned int&>(val));
 }
 
 inline void NetMsgReadVisitor::ReadBuffer(char* buffer, int destLength) const
@@ -96,7 +96,7 @@ void NetMsgWriteVisitor::Write(const T& val)
 template<>
 inline void NetMsgWriteVisitor::Write(const float& val)
 {
-	NetMsgWriteVisitor::Write<int>(reinterpret_cast<const int&>(val));
+	NetMsgWriteVisitor::Write<unsigned int>(reinterpret_cast<const unsigned int&>(val));
 }
 
 inline void NetMsgWriteVisitor::WriteBuffer(const char* buffer, int srcLength)

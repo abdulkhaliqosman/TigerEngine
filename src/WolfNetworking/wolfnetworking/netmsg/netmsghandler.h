@@ -14,8 +14,21 @@ namespace wolf
 		template<typename T>
 		void RegisterNetMsgType(std::function<void(const T&)> onMsgReceivedCallback)
 		{
-			m_NetMsgMap[T::s_NetMsgTypeId] = jgr::New<NetMsgFactory<T> >(onMsgReceivedCallback);
+			auto iter = m_NetMsgMap.find(T::s_NetMsgTypeId);
+			NetMsgFactory<T>* factory = nullptr;
+			if (iter == m_NetMsgMap.end())
+			{
+				factory = jgr::New<NetMsgFactory<T> >();
 
+				m_NetMsgMap[T::s_NetMsgTypeId] = factory;
+			}
+			else
+			{
+				iNetMsgFactory* ifac = iter->second;
+				factory = dynamic_cast<NetMsgFactory<T>*>(ifac);
+			}
+
+			factory->RegisterReceivedCallback(onMsgReceivedCallback);
 		}
 
 		void OnReceivePacket(const NetClientData&, const char* data, int length);
@@ -41,17 +54,26 @@ namespace wolf
 		class NetMsgFactory : public iNetMsgFactory
 		{
 		public:
-			NetMsgFactory(std::function<void(const T&)> onMsgReceivedCallback) : m_OnMsgReceivedCallback(onMsgReceivedCallback){}
+			NetMsgFactory(){}
+
+			void RegisterReceivedCallback(std::function<void(const T&)> onMsgReceivedCallback)
+			{
+				m_OnMsgReceivedCallback.push_back(onMsgReceivedCallback);
+			}
 
 			void CreateReceivedNetMsg(const NetMsgReadVisitor& visitor) override
 			{
 				T* netMsg = jgr::New<T>();
 				netMsg->Deserialize(visitor);
-				m_OnMsgReceivedCallback(*netMsg);
+
+				for (auto& callback : m_OnMsgReceivedCallback)
+				{
+					callback(*netMsg);
+				}
 			}
 
 		private:
-			std::function<void(const T&)> m_OnMsgReceivedCallback;
+			std::vector<std::function<void(const T&)> > m_OnMsgReceivedCallback;
 		};
 
 		NetMsgHandler(const NetMsgHandler&) = delete;

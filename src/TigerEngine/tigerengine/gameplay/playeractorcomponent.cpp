@@ -4,6 +4,7 @@
 #include "wolfnetworking/system/inetworksystem.h"
 #include <wolfnetworking/netmsg/netmsghandler.h>
 #include "tigerengine/gamenetwork/gamenetworksystem.h"
+#include <tigerengine/app/windows/winapp.h>
 
 namespace tgr
 {
@@ -22,10 +23,37 @@ namespace tgr
 		if (m_UserId == GetGameNetwork()->GetLocalPlayerId())
 		{
 			// get input
-
+			auto* transform = GetTransform();
+			const auto& localPos = transform->GetLocalPosition();
 			bool moved = false;
 
+			if (m_UserId == 1)
+			{
 
+				if (WinApp::GetInput().GetKeyDown('I'))
+				{
+					transform->SetLocalPosition(localPos + transform->Back() / 60.0f);
+					moved = true;
+				}
+
+				if (WinApp::GetInput().GetKeyDown('K'))
+				{
+					transform->SetLocalPosition(localPos + transform->Forward() / 60.0f);
+					moved = true;
+				}
+
+				if (WinApp::GetInput().GetKeyDown('J'))
+				{
+					transform->SetLocalPosition(localPos + transform->Left() / 60.0f);
+					moved = true;
+				}
+
+				if (WinApp::GetInput().GetKeyDown('L'))
+				{
+					transform->SetLocalPosition(localPos + transform->Right() / 60.0f);
+					moved = true;
+				}
+			}
 
 			if (moved)
 			{
@@ -47,13 +75,13 @@ namespace tgr
 		if (msg.GetPlayerId() == m_UserId)
 		{
 			GetTransform()->SetLocalPosition(msg.GetPlayerPosition());
-		}
 
-		if (GetGameNetwork()->GetIsServer())
-		{
-			// broadcast to all clients
-			MovePlayerNetMsg copy = msg;
-			GetNetwork()->GetMsgHandler().BroadcastNetMsgToClients(copy);
+			if (GetGameNetwork()->GetIsServer())
+			{
+				// broadcast to all clients
+				MovePlayerNetMsg copy = msg;
+				GetNetwork()->GetMsgHandler().BroadcastNetMsgToClients(copy);
+			}
 		}
 	}
 
