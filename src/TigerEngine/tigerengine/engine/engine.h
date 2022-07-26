@@ -17,6 +17,11 @@ namespace wolf
 	class iNetworkSystem;
 }
 
+namespace cht
+{
+	class iPhysicsSystem;
+}
+
 namespace tgr
 {
 	class Scene;
@@ -43,6 +48,7 @@ namespace tgr
 		inline wolf::iNetworkSystem* GetNetwork() { return m_Network; }
 		inline GameNetworkSystem* GetGameNetwork() { return m_GameNetwork; }
 		inline lion::AnimationSystem* GetAnimation() { return m_Animation; }
+		inline cht::iPhysicsSystem* GetPhysics() { return m_Physics; }
 
 		inline ImGuiWrapper* GetImGuiWrapper() { return m_ImGuiWrapper; }
 		inline jgr::JobSystem& GetJobSystem() override { return *m_JobSystem; }
@@ -59,5 +65,6 @@ namespace tgr
 		Scene* m_Scene = nullptr;
 		ImGuiWrapper* m_ImGuiWrapper = nullptr;
 		jgr::JobSystem* m_JobSystem = nullptr;
+		cht::iPhysicsSystem* m_Physics = nullptr;
 	};
 }

@@ -4,6 +4,8 @@
 
 namespace jgr
 {
+	std::unordered_map<void*, const char*> Memory::ms_MemDebugMap;
+
 	class MemoryAllocator
 	{
 	public:
@@ -49,6 +51,7 @@ namespace jgr
 	void MemoryAllocator::Shutdown()
 	{
 		assert(m_AllocCount == 0);
+
 	}
 
 	char* MemoryAllocator::Allocate(size_t size)
@@ -69,16 +72,23 @@ namespace jgr
 
 	void Memory::Shutdown()
 	{
+		for (auto iter : ms_MemDebugMap)
+		{
+			JgrLogError("%s", iter.second);
+		}
+
 		gs_MemoryAllocator.Shutdown();
 	}
 
 	char* Memory::Allocate(size_t size)
 	{
-		return gs_MemoryAllocator.Allocate(size);
+		// return gs_MemoryAllocator.Allocate(size);
+		return new char[size];
 	}
 
 	void Memory::Deallocate(void* obj)
 	{
-		gs_MemoryAllocator.Deallocate(obj);
+		// gs_MemoryAllocator.Deallocate(obj);
+		delete[] obj;
 	}
 }

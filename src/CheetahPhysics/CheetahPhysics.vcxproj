@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -18,13 +18,25 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cheetahphysics\cheetahpch.h" />
+    <ClInclude Include="cheetahphysics\system\physicssystem.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="cheetahphysics\cheetahpch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="cheetahphysics\system\physicssystem.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{69f6bdd8-0e44-4414-8217-09ff3c709387}</ProjectGuid>
-    <RootNamespace>submodules</RootNamespace>
+    <ProjectGuid>{d01ece28-1816-4ed8-8fe8-bbd654e6662b}</ProjectGuid>
+    <RootNamespace>CheetahPhysics</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Submodules</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -87,12 +99,15 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);BT_USE_SSE_IN_API</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)submodules\extern;$(SolutionDir)submodules\ImGui;$(SolutionDir)submodules\bullet3\src;$(SolutionDir)submodules\Optick\src;</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>cheetahphysics/cheetahpch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\CheetahPhysics;$(SolutionDir)submodules\imgui;$(SolutionDir)submodules\extern;$(SolutionDir)submodules\bullet3\src;$(SolutionDir)submodules\Optick\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>
+      </SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -102,12 +117,15 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions);BT_USE_SSE_IN_API</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)submodules\extern;$(SolutionDir)submodules\ImGui;$(SolutionDir)submodules\bullet3\src;$(SolutionDir)submodules\Optick\src;</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>cheetahphysics/cheetahpch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\CheetahPhysics;$(SolutionDir)submodules\imgui;$(SolutionDir)submodules\extern;$(SolutionDir)submodules\bullet3\src;$(SolutionDir)submodules\Optick\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>
+      </SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -117,12 +135,15 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);BT_USE_SSE_IN_API</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)submodules\extern;$(SolutionDir)submodules\ImGui;$(SolutionDir)submodules\bullet3\src;$(SolutionDir)submodules\Optick\src;$(SolutionDir)submodules\Bullet3\src;$(SolutionDir)submodules\OpenCL-Headers\</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>cheetahphysics/cheetahpch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\CheetahPhysics;$(SolutionDir)submodules\imgui;$(SolutionDir)submodules\extern;$(SolutionDir)submodules\bullet3\src;$(SolutionDir)submodules\Optick\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>
+      </SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -132,97 +153,20 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);BT_USE_SSE_IN_API</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)submodules\extern;$(SolutionDir)submodules\ImGui;$(SolutionDir)submodules\bullet3\src;$(SolutionDir)submodules\Optick\src;</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>cheetahphysics/cheetahpch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\CheetahPhysics;$(SolutionDir)submodules\imgui;$(SolutionDir)submodules\extern;$(SolutionDir)submodules\bullet3\src;$(SolutionDir)submodules\Optick\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>
+      </SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="bullet3\src\btBulletCollisionCommon.h" />
-    <ClInclude Include="bullet3\src\btBulletDynamicsCommon.h" />
-    <ClInclude Include="Extern\cgltf\cgltf.h" />
-    <ClInclude Include="Extern\glad\glad.h" />
-    <ClInclude Include="Extern\GL\wgl.h" />
-    <ClInclude Include="Extern\GL\wglext.h" />
-    <ClInclude Include="Extern\KHR\khrplatform.h" />
-    <ClInclude Include="Extern\stb\stb_image.h" />
-    <ClInclude Include="ImGui\backends\imgui_impl_dx10.h" />
-    <ClInclude Include="ImGui\backends\imgui_impl_dx11.h" />
-    <ClInclude Include="ImGui\backends\imgui_impl_dx12.h" />
-    <ClInclude Include="ImGui\backends\imgui_impl_dx9.h" />
-    <ClInclude Include="ImGui\backends\imgui_impl_opengl3.h" />
-    <ClInclude Include="ImGui\backends\imgui_impl_opengl3_loader.h" />
-    <ClInclude Include="ImGui\backends\imgui_impl_win32.h" />
-    <ClInclude Include="ImGui\imconfig.h" />
-    <ClInclude Include="ImGui\imgui.h" />
-    <ClInclude Include="ImGui\imgui_internal.h" />
-    <ClInclude Include="ImGui\imstb_rectpack.h" />
-    <ClInclude Include="ImGui\imstb_textedit.h" />
-    <ClInclude Include="ImGui\imstb_truetype.h" />
-    <ClInclude Include="ImGui\misc\cpp\imgui_stdlib.h" />
-    <ClInclude Include="ImGui\misc\single_file\imgui_single_file.h" />
-    <ClInclude Include="OpenCL-Headers\CL\cl.h" />
-    <ClInclude Include="OpenCL-Headers\CL\cl_d3d10.h" />
-    <ClInclude Include="OpenCL-Headers\CL\cl_d3d11.h" />
-    <ClInclude Include="OpenCL-Headers\CL\cl_dx9_media_sharing.h" />
-    <ClInclude Include="OpenCL-Headers\CL\cl_dx9_media_sharing_intel.h" />
-    <ClInclude Include="OpenCL-Headers\CL\cl_egl.h" />
-    <ClInclude Include="OpenCL-Headers\CL\cl_ext.h" />
-    <ClInclude Include="OpenCL-Headers\CL\cl_ext_intel.h" />
-    <ClInclude Include="OpenCL-Headers\CL\cl_gl.h" />
-    <ClInclude Include="OpenCL-Headers\CL\cl_gl_ext.h" />
-    <ClInclude Include="OpenCL-Headers\CL\cl_half.h" />
-    <ClInclude Include="OpenCL-Headers\CL\cl_icd.h" />
-    <ClInclude Include="OpenCL-Headers\CL\cl_layer.h" />
-    <ClInclude Include="OpenCL-Headers\CL\cl_platform.h" />
-    <ClInclude Include="OpenCL-Headers\CL\cl_va_api_media_sharing_intel.h" />
-    <ClInclude Include="OpenCL-Headers\CL\cl_version.h" />
-    <ClInclude Include="OpenCL-Headers\CL\opencl.h" />
-    <ClInclude Include="Optick\src\optick.config.h" />
-    <ClInclude Include="Optick\src\optick.h" />
-    <ClInclude Include="Optick\src\optick_capi.h" />
-    <ClInclude Include="Optick\src\optick_common.h" />
-    <ClInclude Include="Optick\src\optick_core.freebsd.h" />
-    <ClInclude Include="Optick\src\optick_core.h" />
-    <ClInclude Include="Optick\src\optick_core.linux.h" />
-    <ClInclude Include="Optick\src\optick_core.macos.h" />
-    <ClInclude Include="Optick\src\optick_core.platform.h" />
-    <ClInclude Include="Optick\src\optick_core.win.h" />
-    <ClInclude Include="Optick\src\optick_gpu.h" />
-    <ClInclude Include="Optick\src\optick_memory.h" />
-    <ClInclude Include="Optick\src\optick_message.h" />
-    <ClInclude Include="Optick\src\optick_miniz.h" />
-    <ClInclude Include="Optick\src\optick_serialization.h" />
-    <ClInclude Include="Optick\src\optick_server.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="bullet3\src\btBulletCollisionAll.cpp" />
-    <ClCompile Include="bullet3\src\btBulletDynamicsAll.cpp" />
-    <ClCompile Include="bullet3\src\btLinearMathAll.cpp" />
-    <ClCompile Include="Extern\cgltf\cgltf.c" />
-    <ClCompile Include="Extern\glad\glad.c" />
-    <ClCompile Include="ImGui\backends\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="ImGui\backends\imgui_impl_win32.cpp" />
-    <ClCompile Include="ImGui\ImGui.cpp" />
-    <ClCompile Include="ImGui\imgui_demo.cpp" />
-    <ClCompile Include="ImGui\imgui_draw.cpp" />
-    <ClCompile Include="ImGui\imgui_tables.cpp" />
-    <ClCompile Include="ImGui\imgui_widgets.cpp" />
-    <ClCompile Include="Optick\src\optick_capi.cpp" />
-    <ClCompile Include="Optick\src\optick_core.cpp" />
-    <ClCompile Include="Optick\src\optick_gpu.cpp" />
-    <ClCompile Include="Optick\src\optick_gpu.d3d12.cpp" />
-    <ClCompile Include="Optick\src\optick_message.cpp" />
-    <ClCompile Include="Optick\src\optick_miniz.cpp" />
-    <ClCompile Include="Optick\src\optick_serialization.cpp" />
-    <ClCompile Include="Optick\src\optick_server.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

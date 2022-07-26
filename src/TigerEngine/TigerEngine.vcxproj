@@ -90,12 +90,12 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>tigerengine/tigerpch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)src\WolfNetworking;$(SolutionDir)submodules\imgui;$(SolutionDir)submodules\extern;$(SolutionDir)submodules\Optick\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)src\CheetahPhysics;$(SolutionDir)src\WolfNetworking;$(SolutionDir)submodules\imgui;$(SolutionDir)submodules\extern;$(SolutionDir)submodules\Optick\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)LeopardGraphics.lib;$(OutDir)LionAnimation.lib;$(OutDir)WolfNetworking.lib;$(OutDir)Submodules.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)LeopardGraphics.lib;$(OutDir)LionAnimation.lib;$(OutDir)CheetahPhysics.lib;$(OutDir)WolfNetworking.lib;$(OutDir)Submodules.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -108,14 +108,14 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>tigerengine/tigerpch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)src\WolfNetworking;$(SolutionDir)submodules\imgui;$(SolutionDir)submodules\extern;$(SolutionDir)submodules\Optick\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)src\CheetahPhysics;$(SolutionDir)src\WolfNetworking;$(SolutionDir)submodules\imgui;$(SolutionDir)submodules\extern;$(SolutionDir)submodules\Optick\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)LeopardGraphics.lib;$(OutDir)LionAnimation.lib;$(OutDir)WolfNetworking.lib;$(OutDir)Submodules.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)LeopardGraphics.lib;$(OutDir)LionAnimation.lib;$(OutDir)CheetahPhysics.lib;$(OutDir)WolfNetworking.lib;$(OutDir)Submodules.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -126,12 +126,12 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>tigerengine/tigerpch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)src\WolfNetworking;$(SolutionDir)submodules\imgui;$(SolutionDir)submodules\extern;$(SolutionDir)submodules\Optick\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)src\CheetahPhysics;$(SolutionDir)src\WolfNetworking;$(SolutionDir)submodules\imgui;$(SolutionDir)submodules\extern;$(SolutionDir)submodules\Optick\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)LeopardGraphics.lib;$(OutDir)LionAnimation.lib;$(OutDir)WolfNetworking.lib;$(OutDir)Submodules.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)LeopardGraphics.lib;$(OutDir)LionAnimation.lib;$(OutDir)CheetahPhysics.lib;$(OutDir)WolfNetworking.lib;$(OutDir)Submodules.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>LinkVerbose</ShowProgress>
     </Link>
   </ItemDefinitionGroup>
@@ -145,14 +145,14 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>tigerengine/tigerpch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)src\WolfNetworking;$(SolutionDir)submodules\imgui;$(SolutionDir)submodules\extern;$(SolutionDir)submodules\Optick\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)src\CheetahPhysics;$(SolutionDir)src\WolfNetworking;$(SolutionDir)submodules\imgui;$(SolutionDir)submodules\extern;$(SolutionDir)submodules\Optick\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)LeopardGraphics.lib;$(OutDir)LionAnimation.lib;$(OutDir)WolfNetworking.lib;$(OutDir)Submodules.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(OutDir)JaguarCore.lib;$(OutDir)LeopardGraphics.lib;$(OutDir)LionAnimation.lib;$(OutDir)CheetahPhysics.lib;$(OutDir)WolfNetworking.lib;$(OutDir)Submodules.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

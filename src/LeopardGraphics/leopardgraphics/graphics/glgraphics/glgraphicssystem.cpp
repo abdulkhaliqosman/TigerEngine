@@ -16,7 +16,7 @@ namespace lpd
 {
 	iGraphicsSystem* iGraphicsSystem::CreateGraphicsSystem()
 	{
-		return jgr::New<GLGraphicsSystem>();
+		return jgrNew(GLGraphicsSystem);
 	}
 
 	void GLGraphicsSystem::Startup()
@@ -121,7 +121,7 @@ namespace lpd
 
 	GraphicsComponent* GLGraphicsSystem::CreateGraphicsComponent()
 	{
-		auto result = jgr::New<lpd::GraphicsComponent>();
+		auto result = jgrNew(lpd::GraphicsComponent);
 		m_GraphicsComponents.push_back(result);
 		return result;
 	}

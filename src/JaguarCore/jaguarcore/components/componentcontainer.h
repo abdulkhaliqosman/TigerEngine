@@ -25,7 +25,7 @@ namespace jgr
 				return component;
 			}
 
-			T* component = jgr::New<T>();
+			T* component = jgrNew(T);
 			m_Components.push_back(component);
 			m_StartupComponents.push_back(component);
 		}

@@ -1,5 +1,8 @@
 #pragma once
 
+// define to mem debug the game
+#define JGR_MEM_DEBUG
+
 #include "jaguarcore/memory/memory.h"
 #include "jaguarcore/log/log.h"
 #include "jaguarcore/math/math.h"
