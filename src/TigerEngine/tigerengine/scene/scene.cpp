@@ -94,7 +94,13 @@ namespace tgr
 		return go;
 	}
 
-	void Scene::Startup()
+	Scene::Scene(iEngine& engine) 
+		:iScene(engine), m_AgentManager(*this) 
+	{
+
+	}
+
+	void Scene::Setup()
 	{
 		for (int i = 0; i < 2; ++i)
 		{
@@ -106,8 +112,32 @@ namespace tgr
 		
 		CreateCamera(m_Engine);
 
-		m_AgentManager.SetScene(this);
-		m_AgentManager.Startup();
+		m_AgentManager.Setup();
+	}
+
+	void Scene::Teardown()
+	{
+		for (auto* go : m_GameObjects)
+		{
+			jgr::Delete(go);
+		}
+
+		for (auto* transform : m_TransformComponents)
+		{
+			jgr::Delete(transform);
+		}
+
+		m_AgentManager.Teardown();
+	}
+
+	void Scene::StartScene()
+	{
+
+	}
+
+	void Scene::StopScene()
+	{
+
 	}
 
 	void Scene::Update()
@@ -124,21 +154,6 @@ namespace tgr
 		{
 			transform->Update();
 		}
-	}
-
-	void Scene::Shutdown()
-	{
-		for (auto* go : m_GameObjects)
-		{
-			jgr::Delete(go);
-		}
-
-		for (auto* transform : m_TransformComponents)
-		{
-			jgr::Delete(transform);
-		}
-
-		m_AgentManager.Shutdown();
 	}
 
 	jgr::GameObject* Scene::CreateGameObject()

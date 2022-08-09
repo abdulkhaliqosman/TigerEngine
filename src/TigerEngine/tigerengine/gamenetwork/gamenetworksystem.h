@@ -1,6 +1,5 @@
 #pragma once
 
-#include <jaguarcore\system\isystem.h>
 #include <vector>
 #include "tigerengine/gamenetwork/gamenetworkserver.h"
 #include "wolfnetworking/system/inetworksystem.h"
@@ -12,12 +11,19 @@ namespace tgr
 
 	using NetPlayerId = int;
 
-	class GameNetworkSystem : jgr::iSystem
+	class GameNetworkSystem : jgr::iEngineSystem
 	{
 	public:
-		void Startup() override;
+		inline GameNetworkSystem(iEngine& engine) : iEngineSystem(engine) {}
+		inline ~GameNetworkSystem() {}
+
+		void Setup() override;
+		void Teardown() override;
+
+		void StartScene() override;
+		void StopScene() override;
+
 		void Update() override;
-		void Shutdown() override;
 
 		inline int GetLocalPlayerId() const { return m_LocalPlayerId; }
 		inline const std::vector<int>& GetAvailablePeerIds() const { return m_PeerPlayerIds; }

@@ -1,14 +1,18 @@
 #pragma once
-#include <jaguarcore\input\iinput.h>
+#include <jaguarcore\input\iinputsystem.h>
 
 namespace tgr
 {
-	class WinInput : public jgr::iInput
+	class WinInput : public jgr::iInputSystem
 	{
 	public:
-		void Startup() override;
+		inline WinInput(iApp& app) : iInputSystem(app) {}
+		inline virtual ~WinInput() {}
+
+		void Setup() override;
+		void Teardown() override;
+
 		void Update() override;
-		void Shutdown() override;
 
 		inline bool GetKeyDown(int vKey) const { return m_Keys[vKey]; }
 		bool m_Keys[256] = { false };

@@ -9,17 +9,17 @@ constexpr int HID_USAGE_GENERIC_KEYBOARD = 0x06;
 
 namespace tgr
 {
-    void WinInput::Startup()
+    void WinInput::Setup()
+    {
+
+    }
+
+    void WinInput::Teardown()
     {
 
     }
 
     void WinInput::Update()
-    {
-
-    }
-
-    void WinInput::Shutdown()
     {
 
     }

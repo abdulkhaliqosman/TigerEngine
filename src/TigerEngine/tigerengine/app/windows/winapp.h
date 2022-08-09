@@ -9,9 +9,12 @@
 
 namespace tgr
 {
-	class WinApp : public jgr::iApp, public lpd::iDisplay
+	class WinApp : public iApp, public lpd::iDisplay
 	{
 	public:
+		WinApp();
+		virtual ~WinApp();
+
 		void Startup(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, int iCmdShow);
 		void Run() override;
 		void Shutdown();

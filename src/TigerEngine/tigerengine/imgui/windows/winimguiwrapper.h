@@ -8,9 +8,13 @@ namespace tgr
 	class WinImGuiWrapper : public ImGuiWrapper
 	{
 	public:
-		void Startup() override;
+		inline WinImGuiWrapper(iEngine& engine) : ImGuiWrapper(engine) {}
+		inline ~WinImGuiWrapper() {}
+
+		void Setup() override;
 		void Update() override;
-		void Shutdown() override;
+
+		void Teardown() override;
 
 		void SetContext(WinGLContext* value) { m_Context = value; }
 	private:

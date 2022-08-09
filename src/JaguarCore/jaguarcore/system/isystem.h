@@ -5,12 +5,20 @@ namespace jgr
 	class iSystem
 	{
 	public:
-		inline iSystem() {}
+		
 		inline virtual ~iSystem() {}
 
-		virtual void Startup() = 0;
+		virtual void Setup() = 0;
+		virtual void Teardown() = 0;
+
 		virtual void Update() = 0;
-		virtual void Shutdown() = 0;
+
+	private:
+		inline iSystem() {}
+
+		friend class iAppSystem;
+		friend class iEngineSystem;
+		friend class iSceneSystem;
 	};
 
 

@@ -12,9 +12,15 @@ namespace wolf
 	{
 	public:
 		WinNetworkSystem(jgr::iEngine& iEngine);
-		void Startup() override;
+		inline virtual ~WinNetworkSystem() {}
+
+		void Setup() override;
+		void Teardown() override;
+
+		void StartScene() override;
+		void StopScene() override;
+
 		void Update() override;
-		void Shutdown() override;
 
 		void StartClient(const std::string& address) override;
 		void StartServer() override;

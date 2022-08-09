@@ -6,7 +6,7 @@
 
 namespace jgr
 {
-	void JobSystem::Startup()
+	void JobSystem::Setup()
 	{
 		m_IsRunning = true;
 		auto lambda = [this]()
@@ -31,17 +31,28 @@ namespace jgr
 		m_ThreadPool.Startup(9, lambda); // TODO: don't hard code threads
 	}
 
+	void JobSystem::Teardown()
+	{
+		m_IsRunning = false;
+		m_ThreadPool.Shutdown();
+	}
+
+	void JobSystem::StartScene()
+	{
+
+	}
+
+	void JobSystem::StopScene()
+	{
+
+	}
+	
 	void JobSystem::Update()
 	{
 		OPTICK_EVENT();
 		while (!m_JobQueue.Empty());
 	}
 
-	void JobSystem::Shutdown()
-	{
-		m_IsRunning = false;
-		m_ThreadPool.Shutdown();
-	}
 
 	void JobSystem::PushJob(Job* job)
 	{

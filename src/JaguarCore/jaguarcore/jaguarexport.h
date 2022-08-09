@@ -6,7 +6,15 @@
 #include "jaguarcore/memory/memory.h"
 #include "jaguarcore/log/log.h"
 #include "jaguarcore/math/math.h"
+
+#include <jaguarcore/app/iapp.h>
+#include <jaguarcore/app/iappsystem.h>
 #include <jaguarcore/system/isystem.h>
+#include <jaguarcore/engine/iengine.h>
+#include <jaguarcore/engine/ienginesystem.h>
+#include <jaguarcore/scene/iscene.h>
+#include <jaguarcore/scene/iscenesystem.h>
+
 #include <jaguarcore/components/component.h>
 #include <jaguarcore/gameobject/gameobject.h>
 
@@ -22,5 +30,12 @@ using mat4 = jgr::mat4;
 using quat = jgr::quat;
 
 using iSystem = jgr::iSystem;
+using iApp = jgr::iApp;
+using iAppSystem = jgr::iAppSystem;
+using iEngine = jgr::iEngine;
+using iEngineSystem = jgr::iEngineSystem;
+using iScene = jgr::iScene;
+using iSceneSystem = jgr::iSceneSystem;
+
 using Component = jgr::Component;
 using GameObject = jgr::GameObject;

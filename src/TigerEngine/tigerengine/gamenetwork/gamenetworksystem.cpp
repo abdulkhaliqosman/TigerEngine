@@ -7,7 +7,7 @@
 
 namespace tgr
 {
-	void GameNetworkSystem::Startup()
+	void GameNetworkSystem::Setup()
 	{
 		std::function<void(const JoinSessionNetMsg&)> joinfunc
 			= [this](const JoinSessionNetMsg& msg)
@@ -28,12 +28,22 @@ namespace tgr
 		m_GameServerListener.SetSystem(this);
 	}
 
-	void GameNetworkSystem::Update()
+	void GameNetworkSystem::Teardown()
 	{
 
 	}
 
-	void GameNetworkSystem::Shutdown()
+	void GameNetworkSystem::StartScene()
+	{
+
+	}
+
+	void GameNetworkSystem::StopScene()
+	{
+
+	}
+
+	void GameNetworkSystem::Update()
 	{
 
 	}

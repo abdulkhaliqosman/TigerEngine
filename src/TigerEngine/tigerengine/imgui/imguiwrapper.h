@@ -1,6 +1,5 @@
 #pragma once
 
-#include <jaguarcore/system/isystem.h>
 #include <jaguarcore/object/objectvisitor.h>
 #include <jaguarcore/imgui/imguipage.h>
 
@@ -11,12 +10,19 @@ namespace tgr
 
 	};
 
-	class ImGuiWrapper : public iSystem
+	class ImGuiWrapper : public iEngineSystem
 	{
 	public:
-		void Startup() override;
+		inline ImGuiWrapper(iEngine& engine) : iEngineSystem(engine) {}
+		inline ~ImGuiWrapper() {}
+
+		void Setup() override;
+		void Teardown() override;
+
+		void StartScene() override;
+		void StopScene() override;
+
 		void Update() override;
-		void Shutdown() override;
 
 		void AddImguiPage(jgr::ImguiPage* page);
 	private:

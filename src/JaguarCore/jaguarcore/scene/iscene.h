@@ -1,12 +1,13 @@
 #pragma once
-#include "jaguarcore/system/isystem.h"
 
 namespace jgr
 {
 	class iEngine;
 
-	class iScene : public iSystem
+	class iScene : public iEngineSystem
 	{
-		virtual iEngine* GetEngine() = 0;
+	public:
+		inline iScene(iEngine& engine) :iEngineSystem(engine) {}
+		virtual ~iScene() {}
 	};
 }

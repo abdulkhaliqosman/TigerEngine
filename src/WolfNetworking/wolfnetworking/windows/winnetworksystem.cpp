@@ -19,7 +19,7 @@ namespace wolf
 		m_MsgHandler.SetNetworkSystem(this);
 	}
 
-	void WinNetworkSystem::Startup()
+	void WinNetworkSystem::Setup()
 	{
 		WSADATA wsaData;
 		int iResult;
@@ -46,6 +46,33 @@ namespace wolf
 		);
 	}
 
+	void WinNetworkSystem::Teardown()
+	{
+		switch (m_NetworkType)
+		{
+		case NetworkType::Client:
+		{
+			m_Client.Disconnect();
+			break;
+		}
+		case NetworkType::Server:
+		{
+			m_Server.Disconnect();
+			break;
+		}
+		}
+	}
+
+	void WinNetworkSystem::StartScene()
+	{
+
+	}
+
+	void WinNetworkSystem::StopScene()
+	{
+
+	}
+
 	void WinNetworkSystem::Update()
 	{
 		switch (m_NetworkType)
@@ -63,24 +90,6 @@ namespace wolf
 		}
 
 	}
-
-	void WinNetworkSystem::Shutdown()
-	{
-		switch (m_NetworkType)
-		{
-		case NetworkType::Client:
-		{
-			m_Client.Disconnect();
-			break;
-		}
-		case NetworkType::Server:
-		{
-			m_Server.Disconnect();
-			break;
-		}
-		}
-	}
-
 	void WinNetworkSystem::StartClient(const std::string& address)
 	{
 		assert(m_NetworkType == NetworkType::Disabled);

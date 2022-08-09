@@ -60,12 +60,12 @@ namespace jgr
 #define STRINGIZE2(x) #x
 #define LINE_STRING STRINGIZE(__LINE__)
 
-#define jgrDebugNew(ptr) jgr::Memory::DebugRegister(ptr, __FILE__", ("LINE_STRING")");
+#define jgrDebugNew(ptr) jgr::Memory::DebugRegister(ptr, __FILE__", ("LINE_STRING")")
 #define jgrDebugDelete(ptr) jgr::Memory::DebugUnRegister(ptr);
 #else
 #define jgrDebugNew(ptr, name)
 #define jgrDebugDelete(ptr) {}
 #endif
 
-#define jgrNew(type, ...) jgrDebugNew(jgr::New<type>(__VA_ARGS__));
-#define jgrDelete(mem) jgrDebugDelete(mem); jgr::Delete(mem); 
+#define jgrNew(type, ...) jgrDebugNew(jgr::New<type>(__VA_ARGS__))
+#define jgrDelete(mem) jgrDebugDelete(mem); jgr::Delete(mem); mem = nullptr; 

@@ -14,9 +14,14 @@ namespace lpd
 	class GLGraphicsSystem : public iGraphicsSystem
 	{
 	public:
-		void Startup() override;
+		inline GLGraphicsSystem(iEngine& engine) : iGraphicsSystem(engine) {}
+		void Setup() override;
+		void Teardown() override;
+
+		void StartScene() override;
+		void StopScene() override;
+
 		void Update() override;
-		void Shutdown() override;
 
 		void SetDisplay(iDisplay* value) override;
 		iDisplay* GetDisplay() override;

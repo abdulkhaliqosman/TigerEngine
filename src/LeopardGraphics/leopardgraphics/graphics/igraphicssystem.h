@@ -1,6 +1,6 @@
 #pragma once
 
-#include <jaguarcore\system\isystem.h>
+
 #include <string>
 
 namespace lpd
@@ -12,9 +12,12 @@ namespace lpd
 	class MeshGroup;
 	class SkeletalMesh;
 
-	class iGraphicsSystem : public iSystem
+	class iGraphicsSystem : public iEngineSystem
 	{
 	public:
+		inline iGraphicsSystem(iEngine& engine) : iEngineSystem(engine) {}
+		inline virtual ~iGraphicsSystem() {}
+
 		virtual void SetDisplay(iDisplay* value) = 0;
 		virtual iDisplay* GetDisplay() = 0;
 		virtual GraphicsComponent* CreateGraphicsComponent() = 0;
@@ -22,7 +25,7 @@ namespace lpd
 		virtual MeshGroup* LoadMesh(const std::string& path) = 0;
 		virtual SkeletalMesh* CreateSkeletalMesh() = 0;
 
-		static iGraphicsSystem* CreateGraphicsSystem();
+		static iGraphicsSystem* CreateGLGraphicsSystem(iEngine& engine);
 
 		void SetActiveCamera(const CameraComponent* cc) { m_ActiveCamera = cc; }
 	protected:

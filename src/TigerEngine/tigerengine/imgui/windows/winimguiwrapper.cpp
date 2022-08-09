@@ -8,9 +8,9 @@
 
 namespace tgr
 {
-	void WinImGuiWrapper::Startup()
+	void WinImGuiWrapper::Setup()
 	{
-		ImGuiWrapper::Startup();
+		ImGuiWrapper::Setup();
 		ImGui_ImplWin32_Init(m_Context->GetHWND());
 		ImGui_ImplOpenGL3_Init(nullptr);
 	}
@@ -25,7 +25,7 @@ namespace tgr
 
 	}
 
-	void WinImGuiWrapper::Shutdown()
+	void WinImGuiWrapper::Teardown()
 	{
 
 	}

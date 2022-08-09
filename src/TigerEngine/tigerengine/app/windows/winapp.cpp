@@ -14,6 +14,17 @@ namespace tgr
 {
 	WinApp* WinApp::ms_Instance = nullptr;
 
+	WinApp::WinApp()
+		:m_WinInput{*this}
+	{
+
+	}
+
+	WinApp::~WinApp()
+	{
+
+	}
+
 	void WinApp::Startup(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, int iCmdShow)
 	{
 		m_hInstance = hInstance;
@@ -28,7 +39,7 @@ namespace tgr
 
 	void WinApp::Run()
 	{
-		Engine engine;
+		Engine engine{*this};
 
 		{
 			OPTICK_FRAME("Startup");
@@ -37,18 +48,18 @@ namespace tgr
 
 			m_WinInput.RegisterRawInputDevices(m_WinGLContext.GetHWND());
 
-			auto* gfx = lpd::iGraphicsSystem::CreateGraphicsSystem();
+			auto* gfx = lpd::iGraphicsSystem::CreateGLGraphicsSystem(engine);
 			gfx->SetDisplay(this);
 
 			engine.SetGraphics(gfx);
 
-			auto imgui = jgr::New <WinImGuiWrapper>();
+			auto imgui = jgrNew(WinImGuiWrapper, engine);
 			engine.SetImGuiWrapper(imgui);
 			imgui->SetContext(&m_WinGLContext);
 
-			engine.SetNetwork(jgr::New<wolf::WinNetworkSystem>(engine));
+			engine.SetNetwork(jgrNew(wolf::WinNetworkSystem, engine));
 
-			engine.Startup();
+			engine.Setup();
 
 			m_IsRunning = true;
 		}
@@ -60,7 +71,7 @@ namespace tgr
 			engine.Update();
 		}
 
-		engine.Shutdown();
+		engine.Teardown();
 	}
 
 	void WinApp::Shutdown()

@@ -21,12 +21,30 @@
     <ClInclude Include="cheetahphysics\system\physicssystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="cheetahphysics\system\iphysicssystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cheetahphysics\rigidbody\irigidbody.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cheetahphysics\bulletphysics\bulletphysics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cheetahphysics\bulletphysics\bulletrigidbody.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cheetahphysics\cheetahpch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cheetahphysics\system\physicssystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cheetahphysics\bulletphysics\bulletphysics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cheetahphysics\bulletphysics\bulletrigidbody.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

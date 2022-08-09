@@ -1,9 +1,8 @@
 #pragma once
 
-#include <jaguarcore\system\isystem.h>
+#include <jaguarcore/thread/jobsystem.h>
 #include <vector>
 #include <string>
-#include <jaguarcore/thread/jobsystem.h>
 
 namespace lion
 {
@@ -19,12 +18,19 @@ namespace lion
 		void Execute() override;
 	};
 
-	class AnimationSystem : public iSystem
+	class AnimationSystem : public iEngineSystem
 	{
 	public:
-		void Startup() override;
+		inline AnimationSystem(iEngine& engine) : iEngineSystem(engine) {}
+		inline ~AnimationSystem() {}
+
+		void Setup() override;
+		void Teardown() override;
+		
+		void StartScene() override;
+		void StopScene() override;
+
 		void Update() override;
-		void Shutdown() override;
 
 		AnimationComponent* CreateAnimationComponent();
 		const AnimClip* LoadClip(const std::string& path);

@@ -16,7 +16,7 @@ namespace tgr
 		component->Update();
 	}
 
-	void AgentManager::Startup()
+	void AgentManager::Setup()
 	{
 		for (auto* elem : m_Agents)
 		{
@@ -27,20 +27,30 @@ namespace tgr
 		}
 	}
 
+	void AgentManager::Teardown()
+	{
+		for (auto* agent : m_Agents)
+		{
+			jgr::Delete(agent);
+		}
+	}
+
+	void AgentManager::StartScene()
+	{
+
+	}
+
+	void AgentManager::StopScene()
+	{
+
+	}
+
 	void AgentManager::Update()
 	{
 		OPTICK_EVENT();
 		for (auto* elem : m_Jobs)
 		{
-			GetScene()->GetEngine()->GetJobSystem().PushJob(elem);
-		}
-	}
-
-	void AgentManager::Shutdown()
-	{
-		for (auto* agent : m_Agents)
-		{
-			jgr::Delete(agent);
+			GetScene().GetJobSystem().PushJob(elem);
 		}
 	}
 

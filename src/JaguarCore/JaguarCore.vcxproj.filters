@@ -48,7 +48,7 @@
     <ClInclude Include="jaguarcore\transform\transformcomponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="jaguarcore\input\iinput.h">
+    <ClInclude Include="jaguarcore\input\iinputsystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="jaguarcore\log\log.h">
@@ -100,6 +100,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="jaguarcore\engine\iengine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jaguarcore\engine\ienginesystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jaguarcore\app\iappsystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jaguarcore\scene\iscenesystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

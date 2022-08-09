@@ -1,17 +1,24 @@
 #pragma once
 
-#include "jaguarcore/system/isystem.h"
+#include <jaguarcore/engine/ienginesystem.h>
 #include "jaguarcore/thread/jobqueue.h"
 #include "jaguarcore/thread/threadpool.h"
 
 namespace jgr
 {
-	class JobSystem : public iSystem
+	class JobSystem : public iEngineSystem
 	{
 	public:
-		void Startup() override;
+		inline JobSystem(iEngine& engine) : iEngineSystem(engine) {}
+		inline ~JobSystem() {}
+
+		void Setup() override;
+		void Teardown() override;
+
+		void StartScene() override;
+		void StopScene() override;
+
 		void Update() override;
-		void Shutdown() override;
 
 		void PushJob(Job* job);
 

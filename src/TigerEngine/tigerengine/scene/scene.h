@@ -15,12 +15,18 @@ namespace tgr
 	class Scene : public jgr::iScene
 	{
 	public:
-		void Startup() override;
+		Scene(iEngine& engine);
+		inline virtual ~Scene() {}
+
+		void Setup() override;
+		void Teardown() override;
+
+		void StartScene() override;
+		void StopScene() override;
+
 		void Update() override;
-		void Shutdown() override;
 
 		void SetEngine(Engine* value) { m_Engine = value; }
-		jgr::iEngine* GetEngine() override { return m_Engine; }
 
 		jgr::GameObject* CreateGameObject();
 		jgr::TransformComponent* CreateTransformComponent(jgr::GameObject*);
@@ -40,7 +46,7 @@ namespace tgr
 		std::vector<jgr::GameObject*> m_GameObjects;
 		std::vector<jgr::TransformComponent*> m_TransformComponents;
 		std::vector<jgr::Component*> m_GenericComponents;
-		Engine* m_Engine;
+		Engine* m_Engine = nullptr;
 
 		AgentManager m_AgentManager;
 

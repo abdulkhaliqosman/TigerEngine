@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-#include <tigerengine/scene/iscenesystem.h>
 #include <jaguarcore/thread/jobsystem.h>
 
 namespace jgr
@@ -23,9 +22,17 @@ namespace tgr
 	class AgentManager : public iSceneSystem
 	{
 	public:
-		void Startup() override;
+		inline AgentManager(iScene& scene) : iSceneSystem{ scene } {}
+		inline virtual ~AgentManager() {}
+
+		void Setup() override;
+		void Teardown() override;
+
+		void StartScene() override;
+		void StopScene() override;
+
 		void Update() override;
-		void Shutdown() override;
+
 
 		AgentComponent* CreateAgentComponent(jgr::GameObject*);
 

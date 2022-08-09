@@ -14,12 +14,12 @@
 
 namespace lpd
 {
-	iGraphicsSystem* iGraphicsSystem::CreateGraphicsSystem()
+	iGraphicsSystem* iGraphicsSystem::CreateGLGraphicsSystem(iEngine& engine)
 	{
-		return jgrNew(GLGraphicsSystem);
+		return jgrNew(GLGraphicsSystem, engine);
 	}
 
-	void GLGraphicsSystem::Startup()
+	void GLGraphicsSystem::Setup()
 	{
 		m_VertexArray.Load(1);
 		m_Shader.Load("./assets/shaders/static.vert", "./assets/shaders/lit.frag");
@@ -38,6 +38,38 @@ namespace lpd
 
 
 		m_VertexArray.Unbind();
+	}
+
+	void GLGraphicsSystem::Teardown()
+	{
+		m_VertexArray.Unload();
+
+		for (auto* elem : m_GraphicsComponents)
+		{
+			elem->Shutdown();
+			jgr::Delete(elem);
+		}
+
+		for (auto* elem : m_CameraComponents)
+		{
+			elem->Shutdown();
+			jgr::Delete(elem);
+		}
+
+		for (auto* elem : m_Shapes)
+		{
+			jgr::Delete(elem);
+		}
+	}
+
+	void GLGraphicsSystem::StartScene()
+	{
+
+	}
+
+	void GLGraphicsSystem::StopScene()
+	{
+
 	}
 
 	void GLGraphicsSystem::Update()
@@ -79,7 +111,7 @@ namespace lpd
 		Uniform<mat4>::Set(m_Shader.GetUniform("view"), view);
 		Uniform<mat4>::Set(m_Shader.GetUniform("projection"), projection);
 		Uniform<vec3>::Set(m_Shader.GetUniform("lightPos"), m_ActiveCamera->GetGameObject()->GetTransform()->GetLocalPosition());
-		
+
 
 		for (GraphicsComponent* gc : m_GraphicsComponents)
 		{
@@ -92,28 +124,6 @@ namespace lpd
 
 		m_VertexArray.Unbind();
 		m_Shader.Unbind();
-	}
-
-	void GLGraphicsSystem::Shutdown()
-	{
-		m_VertexArray.Unload();
-
-		for (auto* elem : m_GraphicsComponents)
-		{
-			elem->Shutdown();
-			jgr::Delete(elem);
-		}
-
-		for (auto* elem : m_CameraComponents)
-		{
-			elem->Shutdown();
-			jgr::Delete(elem);
-		}
-
-		for (auto* elem : m_Shapes)
-		{
-			jgr::Delete(elem);
-		}
 	}
 
 	void GLGraphicsSystem::SetDisplay(iDisplay* value) { m_Display = value; }

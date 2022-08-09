@@ -104,9 +104,6 @@
     <ClInclude Include="tigerengine\gameplay\cameramovementcomponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="tigerengine\scene\iscenesystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="tigerengine\gamenetwork\gamenetworksystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>

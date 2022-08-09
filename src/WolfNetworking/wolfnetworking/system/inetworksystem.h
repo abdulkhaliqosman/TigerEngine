@@ -1,6 +1,6 @@
 #pragma once
 
-#include <jaguarcore\engine\iengine.h>
+#include <jaguarcore\engine\ienginesystem.h>
 #include <string>
 #include "wolfnetworking/system/netdata.h"
 
@@ -17,10 +17,10 @@ namespace wolf
 	class iNetworkClient;
 	class NetMsgHandler;
 
-	class iNetworkSystem : public jgr::EngineSystem
+	class iNetworkSystem : public jgr::iEngineSystem
 	{
 	public:
-		inline iNetworkSystem(jgr::iEngine& iEngine) : jgr::EngineSystem(iEngine){}
+		inline iNetworkSystem(jgr::iEngine& iEngine) : jgr::iEngineSystem(iEngine){}
 		virtual void StartClient(const std::string& address) = 0;
 		virtual void StartServer() = 0;
 		virtual void Disconnect() = 0;

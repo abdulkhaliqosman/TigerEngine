@@ -19,17 +19,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cheetahphysics\bulletphysics\bulletphysics.h" />
+    <ClInclude Include="cheetahphysics\bulletphysics\bulletrigidbody.h" />
     <ClInclude Include="cheetahphysics\cheetahpch.h" />
+    <ClInclude Include="cheetahphysics\rigidbody\irigidbody.h" />
+    <ClInclude Include="cheetahphysics\system\iphysicssystem.h" />
     <ClInclude Include="cheetahphysics\system\physicssystem.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="cheetahphysics\bulletphysics\bulletphysics.cpp" />
+    <ClCompile Include="cheetahphysics\bulletphysics\bulletrigidbody.cpp" />
     <ClCompile Include="cheetahphysics\cheetahpch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="cheetahphysics\system\physicssystem.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

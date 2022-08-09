@@ -8,7 +8,7 @@
 #include <lionanimation/system/animationsystem.h>
 #include <jaguarcore/thread/jobsystem.h>
 #include <wolfnetworking/system/inetworksystem.h>
-#include <cheetahphysics/system/physicssystem.h>
+#include <cheetahphysics/system/iphysicssystem.h>
 
 #include "tigerengine/gamenetwork/gamenetworksystem.h"
 
@@ -20,28 +20,28 @@ namespace tgr
 {
 	Engine::~Engine()
 	{
-		jgr::Delete(m_Scene);
-		jgr::Delete(m_Graphics);
-		jgr::Delete(m_Animation);
-		jgr::Delete(m_Physics);
-		jgr::Delete(m_JobSystem);
-		jgr::Delete(m_Network);
-		jgr::Delete(m_GameNetwork);
-		jgr::Delete(m_ImGuiWrapper);
+		jgrDelete(m_Scene);
+		jgrDelete(m_Graphics);
+		jgrDelete(m_Animation);
+		jgrDelete(m_Physics);
+		jgrDelete(m_JobSystem);
+		jgrDelete(m_Network);
+		jgrDelete(m_GameNetwork);
+		jgrDelete(m_ImGuiWrapper);
 	}
 
-	void Engine::Startup()
+	void Engine::Setup()
 	{
 		OPTICK_EVENT();
 
 		// init
-		m_JobSystem = jgr::New<jgr::JobSystem>();
-		m_Animation = jgr::New<lion::AnimationSystem>();
-		m_Physics = cht::iPhysicsSystem::CreateBulletPhysics();
+		m_JobSystem = jgrNew(jgr::JobSystem, *this);
+		m_Animation = jgrNew(lion::AnimationSystem, *this);
+		m_Physics = cht::iPhysicsSystem::CreateBulletPhysics(*this);
 
-		m_Scene = jgr::New<Scene>();
+		m_Scene = jgrNew(Scene, *this);
 
-		m_GameNetwork = jgr::New<GameNetworkSystem>();
+		m_GameNetwork = jgrNew(GameNetworkSystem, *this);
 		
 		// resolve dependencies
 		m_Scene->SetEngine(this);
@@ -52,21 +52,21 @@ namespace tgr
 
 
 		// startup
-		m_Scene->Startup(); // we bootstrap the world data first
+		m_Scene->Setup(); // we bootstrap the world data first
 		                    // TODO: move world data to Init() or create a scene manager
 
 		// Core systems first
-		m_JobSystem->Startup();
-		m_Animation->Startup();
-		m_Graphics->Startup();
-		m_Physics->Startup();
-		m_Network->Startup();
+		m_JobSystem->Setup();
+		m_Animation->Setup();
+		m_Graphics->Setup();
+		m_Physics->Setup();
+		m_Network->Setup();
 
 		// Gameplay systems next
-		m_GameNetwork->Startup();
+		m_GameNetwork->Setup();
 		
 		// Finally debug systems
-		m_ImGuiWrapper->Startup();
+		m_ImGuiWrapper->Setup();
 	}
 
 	void Engine::Update()
@@ -90,22 +90,22 @@ namespace tgr
 		m_Graphics->GetDisplay()->SwapBuffers();
 	}
 
-	void Engine::Shutdown()
+	void Engine::Teardown()
 	{
-		m_ImGuiWrapper->Shutdown();
+		m_ImGuiWrapper->Teardown();
 
-		m_JobSystem->Shutdown(); // kill the job system first in case of other system dependencies
+		m_JobSystem->Teardown(); // kill the job system first in case of other system dependencies
 		
-		m_GameNetwork->Shutdown();
-		m_Network->Shutdown();
+		m_GameNetwork->Teardown();
+		m_Network->Teardown();
 
-		m_Physics->Shutdown();
+		m_Physics->Teardown();
 
-		m_Animation->Shutdown();
-		m_Graphics->Shutdown();
+		m_Animation->Teardown();
+		m_Graphics->Teardown();
 
 
-		m_Scene->Shutdown(); // scene is last like how it was first
+		m_Scene->Teardown(); // scene is last like how it was first
 		                     // TODO: create an UnInit
 	}
 

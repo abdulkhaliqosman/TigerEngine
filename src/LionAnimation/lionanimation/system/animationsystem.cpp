@@ -14,7 +14,7 @@ namespace lion
 		component->Update();
 	}
 
-	void AnimationSystem::Startup()
+	void AnimationSystem::Setup()
 	{
 		for (auto* elem : m_AnimationComponents)
 		{
@@ -25,16 +25,7 @@ namespace lion
 		}
 	}
 
-	void AnimationSystem::Update()
-	{
-		OPTICK_EVENT();
-		for (auto* elem : m_Jobs)
-		{
-			m_JobSystem->PushJob(elem);
-		}
-	}
-
-	void AnimationSystem::Shutdown()
+	void AnimationSystem::Teardown()
 	{
 		for (auto* elem : m_AnimationComponents)
 		{
@@ -49,6 +40,25 @@ namespace lion
 		for (auto* elem : m_AnimPoses)
 		{
 			jgr::Delete(elem);
+		}
+	}
+
+	void AnimationSystem::StartScene()
+	{
+
+	}
+
+	void AnimationSystem::StopScene()
+	{
+
+	}
+
+	void AnimationSystem::Update()
+	{
+		OPTICK_EVENT();
+		for (auto* elem : m_Jobs)
+		{
+			m_JobSystem->PushJob(elem);
 		}
 	}
 

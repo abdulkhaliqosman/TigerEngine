@@ -1,37 +1,19 @@
 #pragma once
 
-#include <jaguarcore\system\isystem.h>
+#include <jaguarcore/app/iappsystem.h>
 
 namespace jgr
 {
 	class JobSystem;
 	class iInput;
 
-	class iEngine : public iSystem
+	class iEngine : public iAppSystem
 	{
 	public:
-		inline iEngine() {}
-
+		inline iEngine(iApp& app) :iAppSystem{app} {}
 		virtual ~iEngine() {}
 
 		virtual JobSystem& GetJobSystem() = 0;
 		virtual iInput& GetInput() = 0;
-	};
-
-	class EngineSystem : public iSystem
-	{
-	public:
-		inline EngineSystem(iEngine& iEngine) :m_Engine(iEngine) {}
-
-		virtual ~EngineSystem() {}
-
-		inline iEngine& GetEngine() { return m_Engine; }
-		inline const iEngine& GetEngine() const { return m_Engine; }
-
-		inline JobSystem& GetJobSystem() { return m_Engine.GetJobSystem(); }
-
-	private:
-
-		iEngine& m_Engine;
 	};
 }

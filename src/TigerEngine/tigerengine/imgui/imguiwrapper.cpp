@@ -5,7 +5,7 @@
 
 namespace tgr
 {
-	void ImGuiWrapper::Startup()
+	void ImGuiWrapper::Setup()
 	{
 		OPTICK_EVENT();
 		IMGUI_CHECKVERSION();
@@ -18,6 +18,22 @@ namespace tgr
 		}
 	}
 	
+
+	void ImGuiWrapper::Teardown()
+	{
+
+	}
+
+	void ImGuiWrapper::StartScene()
+	{
+
+	}
+
+	void ImGuiWrapper::StopScene()
+	{
+
+	}
+
 	void ImGuiWrapper::Update()
 	{
 		OPTICK_EVENT();
@@ -51,11 +67,6 @@ namespace tgr
 		}
 
 		ImGui::Render();
-	}
-
-	void ImGuiWrapper::Shutdown()
-	{
-
 	}
 
 	void ImGuiWrapper::AddImguiPage(jgr::ImguiPage* page)

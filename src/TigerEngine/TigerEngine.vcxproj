@@ -194,7 +194,6 @@
     <ClInclude Include="tigerengine\imgui\imguiwrapper.h" />
     <ClInclude Include="tigerengine\imgui\windows\winimguiwrapper.h" />
     <ClInclude Include="tigerengine\app\windows\wininput.h" />
-    <ClInclude Include="tigerengine\scene\iscenesystem.h" />
     <ClInclude Include="tigerengine\scene\scene.h" />
     <ClInclude Include="tigerengine\tigerpch.h" />
     <ClInclude Include="tigerengine\app\windows\winapp.h" />

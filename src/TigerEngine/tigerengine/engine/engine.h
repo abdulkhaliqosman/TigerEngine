@@ -28,14 +28,16 @@ namespace tgr
 	class ImGuiWrapper;
 	class GameNetworkSystem;
 
-	class Engine : public jgr::iEngine
+	class Engine : public iEngine
 	{
 	public:
-		~Engine();
+		inline Engine(iApp& app) :iEngine{ app } {}
+		virtual ~Engine();
 
-		void Startup() override;
+		void Setup() override;
+		void Teardown() override;
+
 		void Update() override;
-		void Shutdown() override;
 
 		inline void SetGraphics(lpd::iGraphicsSystem* value) { m_Graphics = value; }
 		inline void SetNetwork(wolf::iNetworkSystem* value) { m_Network = value; }
