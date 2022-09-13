@@ -2,6 +2,7 @@
 
 
 #include <string>
+#include <leopardgraphics/shapes/cube.h>
 
 namespace lpd
 {
@@ -11,6 +12,7 @@ namespace lpd
 
 	class MeshGroup;
 	class SkeletalMesh;
+	class Cube;
 
 	class iGraphicsSystem : public iEngineSystem
 	{
@@ -23,8 +25,11 @@ namespace lpd
 		virtual GraphicsComponent* CreateGraphicsComponent() = 0;
 		virtual CameraComponent* CreateCameraComponent() = 0;
 		virtual MeshGroup* LoadMesh(const std::string& path) = 0;
-		virtual SkeletalMesh* CreateSkeletalMesh() = 0;
 
+		virtual SkeletalMesh* CreateSkeletalMesh() = 0;
+		virtual Cube* CreateCube() = 0;
+
+		virtual Cube* GetUnitCube() = 0;
 		static iGraphicsSystem* CreateGLGraphicsSystem(iEngine& engine);
 
 		void SetActiveCamera(const CameraComponent* cc) { m_ActiveCamera = cc; }

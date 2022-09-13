@@ -1,14 +1,9 @@
-#include <cheetahphysics/cheetahpch.h>
-#include "btBulletDynamicsCommon.h"
-#include <cheetahphysics/bulletphysics/bulletphysics.h>
+#include <tigerengine/tigerpch.h>
+#include <tigerengine/bulletphysics/bulletphysics.h>
+#include <tigerengine/bulletphysics/bulletboxshape.h>
 
-namespace cht
+namespace tgr
 {
-	iPhysicsSystem* iPhysicsSystem::CreateBulletPhysics(iEngine& engine)
-	{
-		return jgrNew(BulletPhysics, engine);
-	}
-
 	void BulletPhysics::Setup()
 	{
 		m_Config = jgrNew(btDefaultCollisionConfiguration);
@@ -26,12 +21,11 @@ namespace cht
 
 		if (m_World)
 		{
-			int i;
-			for (i = m_World->getNumConstraints() - 1; i >= 0; i--)
+			for (int i = m_World->getNumConstraints() - 1; i >= 0; i--)
 			{
 				m_World->removeConstraint(m_World->getConstraint(i));
 			}
-			for (i = m_World->getNumCollisionObjects() - 1; i >= 0; i--)
+			for (int i = m_World->getNumCollisionObjects() - 1; i >= 0; i--)
 			{
 				btCollisionObject* obj = m_World->getCollisionObjectArray()[i];
 				btRigidBody* body = btRigidBody::upcast(obj);
@@ -47,7 +41,7 @@ namespace cht
 		//delete collision shapes
 		for (int j = 0; j < m_CollisionShapes.size(); j++)
 		{
-			btCollisionShape* shape = m_CollisionShapes[j];
+			btCollisionShape* shape = m_btCollisionShapes[j];
 			delete shape;
 		}
 
@@ -71,6 +65,11 @@ namespace cht
 	void BulletPhysics::Update()
 	{
 		m_World->stepSimulation(1.0f / 60.0f);
+
+		for (auto& body : m_RigidBodies)
+		{
+			body->Update();
+		}
 
 		bool print = false;
 		if (print)
@@ -98,7 +97,7 @@ namespace cht
 	}
 
 
-	iRigidBody* BulletPhysics::AddBoxRigidBody(vec3 pos, quat rot, vec3 halfextents, float mass)
+	BulletCollisionShape* BulletPhysics::CreateBoxShape(vec3 pos, quat rot, vec3 halfextents, float mass)
 	{
 		btVector3 position{pos.x(), pos.y(), pos.z()};
 		btQuaternion rotation{ rot.x(), rot.y(), rot.z() };
@@ -106,18 +105,22 @@ namespace cht
 
 		btVector3 halfext{ halfextents.x(), halfextents.y(), halfextents.z() };
 
-		btBoxShape* box = new btBoxShape(halfext);
-		
-		m_CollisionShapes.push_back(box);
+		BulletBoxShape* box = new BulletBoxShape(halfextents);
 
-		return CreateRigidBody(mass, transform, box);
+		return box;
 	}
 
-	iRigidBody* BulletPhysics::CreateRigidBody(float mass, const btTransform& startTransform, btCollisionShape* shape)
+	BulletRigidBody* BulletPhysics::CreateRigidBody(vec3 pos, quat rot, float mass, BulletCollisionShape& shape)
 	{
-		BulletRigidBody* body = new BulletRigidBody(mass, startTransform, shape);
+		btVector3 position{ pos.x(), pos.y(), pos.z() };
+		btQuaternion rotation{ rot.x(), rot.y(), rot.z() };
+		btTransform transform{ rotation, position };
+
+		BulletRigidBody* body = new BulletRigidBody(mass, transform, shape);
 
 		m_World->addRigidBody(body->GetbtRigidBody());
+
+		m_RigidBodies.push_back(body);
 
 		return body;
 	}

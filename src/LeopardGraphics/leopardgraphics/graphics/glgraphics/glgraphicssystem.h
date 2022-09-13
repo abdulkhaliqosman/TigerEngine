@@ -29,6 +29,9 @@ namespace lpd
 		CameraComponent* CreateCameraComponent() override;
 		MeshGroup* LoadMesh(const std::string& path) override;
 		SkeletalMesh* CreateSkeletalMesh() override;
+		Cube* CreateCube() override;
+
+		inline Cube* GetUnitCube() override { return &m_Cube; }
 
 	private:
 		void ClearScreen();

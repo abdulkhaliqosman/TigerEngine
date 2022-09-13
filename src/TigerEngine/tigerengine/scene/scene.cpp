@@ -17,6 +17,7 @@
 #include <tigerengine/gameplay/playeractorcomponent.h>
 #include "wolfnetworking/system/inetworksystem.h"
 #include <wolfnetworking/netmsg/netmsghandler.h>
+#include <tigerengine/bulletphysics/bulletphysics.h>
 
 namespace tgr
 {
@@ -94,6 +95,29 @@ namespace tgr
 		return go;
 	}
 
+	static jgr::GameObject* CreatePhysicsCube(Engine& engine, const vec3& pos, const vec3& halfextents, float mass)
+	{
+		auto* go = engine.GetScene()->CreateGameObject();
+		auto* transform = engine.GetScene()->CreateTransformComponent(go);
+
+		
+		transform->SetLocalPosition(pos);
+
+		auto* gc = engine.GetGraphics()->CreateGraphicsComponent();
+		go->AddComponent(gc);
+
+		lpd::Cube* cube = engine.GetGraphics()->CreateCube();
+		cube->SetScale(halfextents * 2.0f);
+
+		gc->AddShape(cube);
+
+		BulletCollisionShape* boxShape = engine.GetPhysics()->CreateBoxShape(vec3::Zero(), quat::Identity(), halfextents, 1.0f);
+		BulletRigidBody* rb = engine.GetPhysics()->CreateRigidBody(pos, quat::Identity(), mass, *boxShape);
+		go->AddComponent(rb);
+
+		return go;
+	}
+
 	Scene::Scene(iEngine& engine) 
 		:iScene(engine), m_AgentManager(*this) 
 	{
@@ -111,7 +135,17 @@ namespace tgr
 		}
 		
 		CreateCamera(m_Engine);
+		
 
+		for (int i = 0; i < 3; ++i)
+		{
+			for (int j = 0; j < 3; ++j)
+			{
+				CreatePhysicsCube(*m_Engine, vec3(i - 1.0f, 1.0f, j - 1.0f), vec3(0.2f, 0.2f, 0.2f), 1.0f);
+			}
+		}
+
+		CreatePhysicsCube(*m_Engine, vec3(1.0f, -1.0f, 1.0f), vec3(10.0f, 0.1f, 10.0f), 0.0f);
 		m_AgentManager.Setup();
 	}
 

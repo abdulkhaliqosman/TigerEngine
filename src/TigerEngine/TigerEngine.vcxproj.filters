@@ -66,6 +66,15 @@
     <ClCompile Include="tigerengine\gamenetwork\gamenetworkserver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tigerengine\bulletphysics\bulletboxshape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tigerengine\bulletphysics\bulletphysics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tigerengine\bulletphysics\bulletrigidbody.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tigerengine\app\windows\winapp.h">
@@ -117,6 +126,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tigerengine\gamenetwork\gamenetcomponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tigerengine\bulletphysics\bulletboxshape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tigerengine\bulletphysics\bulletcollisionshape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tigerengine\bulletphysics\bulletphysics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tigerengine\bulletphysics\bulletrigidbody.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

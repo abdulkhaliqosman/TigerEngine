@@ -39,6 +39,7 @@ namespace lpd
 
 	void StaticShape::Render(Shader& shader)
 	{
+		Uniform<bool>::Set(shader.GetUniform("hasPose"), false);
 		Draw(m_ElementBuffer, DrawMode::Triangles);
 	}
 }

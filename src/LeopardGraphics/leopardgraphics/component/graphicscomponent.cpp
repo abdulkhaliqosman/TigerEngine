@@ -36,7 +36,8 @@ namespace lpd
 		if (m_Shape)
 		{
 			const mat4& transform = GetGameObject()->GetTransform()->GetGlobalTransform();
-			Uniform<mat4>::Set(shader.GetUniform("model"), transform);
+			
+			Uniform<mat4>::Set(shader.GetUniform("model"), transform * m_Shape->GetTransform());
 			m_Shape->Bind(shader);
 			m_Shape->Render(shader);
 			m_Shape->Unbind(shader);

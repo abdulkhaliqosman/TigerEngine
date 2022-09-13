@@ -25,7 +25,7 @@ namespace lpd
 		m_Shader.Load("./assets/shaders/static.vert", "./assets/shaders/lit.frag");
 
 		m_VertexArray.Bind(0);
-		m_Cube.Set();
+		// m_Cube.Set();
 		for (CameraComponent* cc : m_CameraComponents)
 		{
 			cc->Startup();
@@ -118,9 +118,9 @@ namespace lpd
 			gc->Render(m_Shader);
 		}
 
-		m_Cube.GetPosAttrib().BindTo(m_Shader.GetAttribute("position"));
-		Uniform<mat4>::Set(m_Shader.GetUniform("model"), transform);
-		Draw(m_Cube.GetElementBuffer(), DrawMode::Triangles);
+		// m_Cube.GetPosAttrib().BindTo(m_Shader.GetAttribute("position"));
+		// Uniform<mat4>::Set(m_Shader.GetUniform("model"), transform);
+		// Draw(m_Cube.GetElementBuffer(), DrawMode::Triangles);
 
 		m_VertexArray.Unbind();
 		m_Shader.Unbind();
@@ -176,6 +176,13 @@ namespace lpd
 	{
 		auto result = jgr::New<SkeletalMesh>();
 		m_SkeletalMeshes.push_back(result);
+		return result;
+	}
+
+	Cube* GLGraphicsSystem::CreateCube()
+	{
+		auto result = jgrNew(Cube);
+		m_Shapes.push_back(result);
 		return result;
 	}
 }

@@ -90,7 +90,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>tigerengine/tigerpch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)src\CheetahPhysics;$(SolutionDir)src\WolfNetworking;$(SolutionDir)submodules\imgui;$(SolutionDir)submodules\extern;$(SolutionDir)submodules\Optick\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)src\CheetahPhysics;$(SolutionDir)src\WolfNetworking;$(SolutionDir)submodules\imgui;$(SolutionDir)submodules\extern;$(SolutionDir)submodules\Optick\src;$(SolutionDir)submodules\bullet3\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -108,7 +108,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>tigerengine/tigerpch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)src\CheetahPhysics;$(SolutionDir)src\WolfNetworking;$(SolutionDir)submodules\imgui;$(SolutionDir)submodules\extern;$(SolutionDir)submodules\Optick\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)src\CheetahPhysics;$(SolutionDir)src\WolfNetworking;$(SolutionDir)submodules\imgui;$(SolutionDir)submodules\extern;$(SolutionDir)submodules\Optick\src;$(SolutionDir)submodules\bullet3\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -126,7 +126,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>tigerengine/tigerpch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)src\CheetahPhysics;$(SolutionDir)src\WolfNetworking;$(SolutionDir)submodules\imgui;$(SolutionDir)submodules\extern;$(SolutionDir)submodules\Optick\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)src\CheetahPhysics;$(SolutionDir)src\WolfNetworking;$(SolutionDir)submodules\imgui;$(SolutionDir)submodules\extern;$(SolutionDir)submodules\Optick\src;$(SolutionDir)submodules\bullet3\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,7 +145,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>tigerengine/tigerpch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)src\CheetahPhysics;$(SolutionDir)src\WolfNetworking;$(SolutionDir)submodules\imgui;$(SolutionDir)submodules\extern;$(SolutionDir)submodules\Optick\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\TigerEngine;$(SolutionDir)src\JaguarCore;$(SolutionDir)src\LeopardGraphics;$(SolutionDir)src\LionAnimation;$(SolutionDir)src\CheetahPhysics;$(SolutionDir)src\WolfNetworking;$(SolutionDir)submodules\imgui;$(SolutionDir)submodules\extern;$(SolutionDir)submodules\Optick\src;$(SolutionDir)submodules\bullet3\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -160,6 +160,9 @@
     <ClCompile Include="tigerengine\agents\agentmanager.cpp" />
     <ClCompile Include="tigerengine\app\windows\winapp.cpp" />
     <ClCompile Include="tigerengine\app\windows\winglcontext.cpp" />
+    <ClCompile Include="tigerengine\bulletphysics\bulletboxshape.cpp" />
+    <ClCompile Include="tigerengine\bulletphysics\bulletphysics.cpp" />
+    <ClCompile Include="tigerengine\bulletphysics\bulletrigidbody.cpp" />
     <ClCompile Include="tigerengine\engine\engine.cpp" />
     <ClCompile Include="tigerengine\gamenetwork\gamenetmsg.cpp" />
     <ClCompile Include="tigerengine\gamenetwork\gamenetworkserver.cpp" />
@@ -183,6 +186,10 @@
     <ClInclude Include="tigerengine\agents\agentcomponent.h" />
     <ClInclude Include="tigerengine\agents\agentmanager.h" />
     <ClInclude Include="tigerengine\app\windows\winglcontext.h" />
+    <ClInclude Include="tigerengine\bulletphysics\bulletboxshape.h" />
+    <ClInclude Include="tigerengine\bulletphysics\bulletcollisionshape.h" />
+    <ClInclude Include="tigerengine\bulletphysics\bulletphysics.h" />
+    <ClInclude Include="tigerengine\bulletphysics\bulletrigidbody.h" />
     <ClInclude Include="tigerengine\engine\engine.h" />
     <ClInclude Include="tigerengine\gamenetwork\gamenetcomponent.h" />
     <ClInclude Include="tigerengine\gamenetwork\gamenetmsg.h" />

@@ -196,9 +196,10 @@ namespace jgr
 		return result;
 	}
 
-	inline Vector<float, 4> operator*(float f, Vector<float, 4>& v)
+	template<typename T, unsigned U, unsigned A>
+	Vector<T, U, A> operator*(const Vector<T, U, A>& v, float f)
 	{
-		Vector<float, 4> result = v;
+		Vector<T, U, A> result = v;
 		for (auto& t : result)
 		{
 			t *= f;

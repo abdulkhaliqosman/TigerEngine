@@ -8,7 +8,7 @@
 #include <lionanimation/system/animationsystem.h>
 #include <jaguarcore/thread/jobsystem.h>
 #include <wolfnetworking/system/inetworksystem.h>
-#include <cheetahphysics/system/iphysicssystem.h>
+#include <tigerengine/bulletphysics/bulletphysics.h>
 
 #include "tigerengine/gamenetwork/gamenetworksystem.h"
 
@@ -37,7 +37,7 @@ namespace tgr
 		// init
 		m_JobSystem = jgrNew(jgr::JobSystem, *this);
 		m_Animation = jgrNew(lion::AnimationSystem, *this);
-		m_Physics = cht::iPhysicsSystem::CreateBulletPhysics(*this);
+		m_Physics = jgrNew(BulletPhysics, *this);
 
 		m_Scene = jgrNew(Scene, *this);
 
@@ -52,6 +52,7 @@ namespace tgr
 
 
 		// startup
+		m_Physics->Setup();
 		m_Scene->Setup(); // we bootstrap the world data first
 		                    // TODO: move world data to Init() or create a scene manager
 
@@ -59,7 +60,6 @@ namespace tgr
 		m_JobSystem->Setup();
 		m_Animation->Setup();
 		m_Graphics->Setup();
-		m_Physics->Setup();
 		m_Network->Setup();
 
 		// Gameplay systems next
